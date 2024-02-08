@@ -499,6 +499,8 @@ i {
 .project-container {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
     width: 100%;
     gap: 20px;
     flex-wrap: wrap;
@@ -798,9 +800,13 @@ footer {
     }
     .project-container {
         justify-content: center;
+        align-items: center;
     }
     .project-box {
         width: 80%;
+        display: flex;
+        align-items: baseline;
+        justify-content: center;
     }
     .mode {
         display: flex;
