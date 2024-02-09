@@ -176,7 +176,7 @@ body.dark #moon {
     position: relative;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: start;
     min-height: 100vh;
     flex-direction: column;
     width: 50%;
