@@ -8,6 +8,28 @@ function myMenuFunction() {
     }
 }
 
+function sendMail() {
+    var params = {
+        name: document.getElementById("name").value,      
+        email: document.getElementById("email").value,      
+        message: document.getElementById("message").value,      
+    };
+    const serviceID = "service_kspom3f";
+    const templateID = "template_7t9b917";
+    
+    emailjs
+        .send(serviceID, templateID, params)
+        .then((res) => {
+            document.getElementById("name").value = "";
+            document.getElementById("email").value = "";
+            document.getElementById("message").value = "";
+            console.log(res);
+            alert("Your message was sent successfully!");
+        })
+        .catch((err) => console.log(err));
+}
+
+
 //dark mode
 
 const body = document.querySelector("body"),
@@ -22,7 +44,7 @@ toggleSwitch.addEventListener("click", ()=> {
 var typingEffect = new Typed(".typedText", {
     strings:["Software Engineer", "Web Developer", "Creative Coder"],
     loop: true,
-    typeSpeed: 100,
+    typeSpeed: 10,
     backSpeed: 50,
     backDelay: 800,
 })
