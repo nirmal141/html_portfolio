@@ -199,6 +199,7 @@ body.dark #moon {
 .hello p {
     font-family: 'Cinzel', serif;
     font-weight: 700;
+    font-size: 60px;
 }
 
 .featured-name {
@@ -483,7 +484,7 @@ i {
     right: -14px;
     top: -28px;
     font-size: 9px;
-    color: #6f0000;
+    color: #243B55;
     padding: 2px 6px;
     border-radius: 20px;
     background: var(--text-color);
@@ -526,7 +527,7 @@ i {
 
 .project-box > i {
     font-size: 50px;
-    color: #027c67;
+    color: #243B55;
     margin-bottom: 25px;
 }
 
@@ -627,7 +628,14 @@ i {
     padding-inline: 20px;
     border-radius: 10px;
     outline: none;
+    color: #fff;
 }
+
+.input-fields::placeholder{
+    color: #ffffffcb;
+}
+
+
 
 .input-subject {
     width: 100%;
@@ -638,6 +646,7 @@ i {
     padding-inline: 20px;
     margin-bottom: 10px;
     outline: none;
+    color: #fff;
 }
 
 .form-button > .btn {
@@ -649,7 +658,7 @@ i {
     background: var(--text-color);
     padding: 10px 20px;
     border-radius: 30px;
-    color: #6f0000;
+    color: #243B55;
 }
 
 textarea {
@@ -658,10 +667,14 @@ textarea {
     background: transparent;
     border: 2px solid var(--text-color);
     padding: 15px 20px;
-    color: var(--text-color);
+    color: #fff;
     border-radius: 10px;
     outline: none;
     resize: none;
+}
+
+textarea::placeholder{
+    color:#ffffffcb ;
 }
 
 .form-button i {
