@@ -18,11 +18,11 @@
     --first-shadow : rgba(0,0,0,0.1);
 
     --box-color : #fff;
-    --nav-color :  rgba(1, 79, 66, 0.796);
+    --nav-color :  #6f0000ce;
     --nav-icon: #000;
-    --logo-color: #027c67;
+    --logo-color: #fff;
 
-    --text-color : #027c67;
+    --text-color : #fff;
     --color-white : #242526;
 
     --icon-color : #242526;
@@ -30,7 +30,10 @@
 }
 
 body {
-    background: var(--body-color);
+    background: #200122;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #6f0000, #200122);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #6f0000, #200122); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    
 }
 
 body.dark {
@@ -195,13 +198,13 @@ body.dark #moon {
     font-size: 50px;
     font-weight: 600;
     margin-block: 20px;
-    color: #027c67;
+    color: var(--text-color);
     margin-bottom: 10px;
 }
 
 .typedText {
     font-family: sans-serif;
-    color: #027c67;
+    color: var(--text-color);
     font-size: 40px;
     font-weight: 600;
     text-transform: capitalize;
@@ -222,7 +225,7 @@ body.dark #moon {
 
 .text-btn .btn {
     border: none;
-    color: #f4f4f4;
+    color: #6f0000;
     box-shadow: 0px 0px 5px 1px rgba(0,0,0,0.1);
 }
 
@@ -232,7 +235,7 @@ body.dark #moon {
     padding: 10px 20px;
     cursor: pointer;
     border-radius: 8px;
-    background: #027c67;
+    background: var(--body-color);
     font-weight: 500;
     transition: all 0.5s ease;
 }
@@ -257,16 +260,16 @@ i {
     display: flex;
     justify-content: center;
     align-items: center;
-    color: var(--logo-color);
+    color: var(--text-color);
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    box-shadow: 0px 1px 5px 3px #027c67;
+    box-shadow: 0px 1px 5px 3px #fff;
     cursor: pointer;
 }
 
 .social-icons .icons i{
-    color: var(--logo-color);
+    color: var(--text-color);
 }
 
 .social-icons:hover .icon-circle {
@@ -331,7 +334,7 @@ i {
     flex-direction: column;
     padding-block: 45px 45px;
     padding-inline: 35px;
-    border: 2px solid #027c67;
+    border: 2px solid var(--text-color);
     background: transparent;
     box-shadow: 1px 8px 10px 2px var(--first-shadow);
     border-radius: 20px;
@@ -377,8 +380,8 @@ i {
     cursor: pointer;
     border: none;
     border-radius: 20px;
-    background: #027c67;
-    color: #fff;
+    background: var(--text-color);
+    color: #6f0000;
     margin-top: 20px;
     font-weight: 500;
     transition: all 0.5s ease;
@@ -391,7 +394,7 @@ i {
     background: transparent;
     box-shadow: 1px 8px 10px 2px var(--first-shadow);
     padding: 10px 20px;
-    border: 2px solid #027c67;
+    border: 2px solid var(--text-color);
     border-radius: 20px;
 }
 
@@ -421,7 +424,7 @@ i {
     height: 100%;
     width: 90%;
     border-radius: 6px;
-    background: #027c67;
+    background: var(--text-color);
     animation: progress 0.4s ease-in-out forwards;
     opacity: 0;
 }
@@ -463,10 +466,10 @@ i {
     right: -14px;
     top: -28px;
     font-size: 9px;
-    color: #fff;
+    color: #6f0000;
     padding: 2px 6px;
     border-radius: 20px;
-    background: #027c67;
+    background: var(--text-color);
     z-index: 1;
 }
 
@@ -489,7 +492,7 @@ i {
     width: 100%;
     height: 250px;
     background: transparent;
-    border: 2px solid #027c67;
+    border: 2px solid var(--text-color);
     border-radius: 20px;
     box-shadow: 1px 8px 10px 2px var(--first-shadow);
     overflow: hidden;
@@ -553,7 +556,7 @@ i {
     padding: 20px 40px;
     width: 100%;
     height: 380px;
-    border: 2px solid #027c67;
+    border: 2px solid var(--text-color);
     border-radius: 20px;
     box-shadow: 1px 10px 8px 2px var(--first-shadow);
     overflow: hidden;
@@ -601,7 +604,7 @@ i {
     width: 50%;
     height: 55px;
     background: transparent;
-    border: 2px solid #027c67;
+    border: 2px solid var(--text-color);
     padding-inline: 20px;
     border-radius: 10px;
     outline: none;
@@ -611,7 +614,7 @@ i {
     width: 100%;
     height: 55px;
     background: transparent;
-    border: 2px solid #027c67;
+    border: 2px solid var(--text-color);
     border-radius: 10px;
     padding-inline: 20px;
     margin-bottom: 10px;
@@ -624,17 +627,17 @@ i {
     justify-content: center;
     margin-left: 40%;
     border: none;
-    background: #027c67;
+    background: var(--text-color);
     padding: 10px 20px;
     border-radius: 30px;
-    color: #fff;
+    color: #6f0000;
 }
 
 textarea {
     width: 100%;
     height: 250px;
     background: transparent;
-    border: 2px solid #027c67;
+    border: 2px solid var(--text-color);
     padding: 15px 20px;
     color: var(--text-color);
     border-radius: 10px;
@@ -654,7 +657,7 @@ footer {
     align-items: center;
     flex-direction: column;
     row-gap: 30px;
-    background: var(--body-color);
+    
     padding-block: 40px 60px;
 }
 
@@ -680,14 +683,25 @@ footer {
 .footer-social-icons { 
     display: flex;
     gap: 30px;
-    color: var(--logo-color);
+    color: var(--text-color);
+}
+
+.footer-social-icons i{
+    color: var(--text-color);
 }
 
 
 .bottom-footer {
     font-size: 14px;
     margin-top: 10px;
-    color: var(--color-white);
+    color: var(--text-color);
+}
+
+.bottom-footer a {
+    font-size: 14px;
+    margin-top: 10px;
+    color: var(--text-color);
+    text-decoration: none;
 }
 
 @media only screen and (max-width: 1024px) {
