@@ -484,6 +484,28 @@ i {
     width: 50%;
 }
 
+.skill-items{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.skill-items-experience{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.skill-items-experience img{
+    width: 100px;
+    height: 30px;
+}
+
+.skill-items img{
+    height: 25px;
+    width: 25px;
+}
+
 @keyframes progress {
     0% {
         width: 0;
