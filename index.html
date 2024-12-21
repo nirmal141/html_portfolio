@@ -55,7 +55,8 @@
     </script>
 
     <script type="text/javascript">
-        (function(){
+        (function() {
+            // Replace with your actual EmailJS public key
             emailjs.init("SfbY2GRHXou-VB3dn");
         })();
     </script>
@@ -448,6 +449,164 @@
             opacity: 0;
             transform: translateY(0);
         }
+    }
+
+    /* Success Checkmark Animation */
+    .success-checkmark {
+        width: 80px;
+        height: 80px;
+        margin: 0 auto;
+        position: relative;
+    }
+
+    .check-icon {
+        width: 80px;
+        height: 80px;
+        position: relative;
+        border-radius: 50%;
+        box-sizing: content-box;
+        border: 4px solid #64ffda;
+    }
+
+    .check-icon::before {
+        top: 3px;
+        left: -2px;
+        width: 30px;
+        transform-origin: 100% 50%;
+        border-radius: 100px 0 0 100px;
+    }
+
+    .check-icon::after {
+        top: 0;
+        left: 30px;
+        width: 60px;
+        transform-origin: 0 50%;
+        border-radius: 0 100px 100px 0;
+        animation: rotate-circle 4.25s ease-in;
+    }
+
+    .icon-line {
+        height: 5px;
+        background-color: #64ffda;
+        display: block;
+        border-radius: 2px;
+        position: absolute;
+        z-index: 10;
+    }
+
+    .icon-line.line-tip {
+        top: 46px;
+        left: 14px;
+        width: 25px;
+        transform: rotate(45deg);
+        animation: icon-line-tip 0.75s;
+    }
+
+    .icon-line.line-long {
+        top: 38px;
+        right: 8px;
+        width: 47px;
+        transform: rotate(-45deg);
+        animation: icon-line-long 0.75s;
+    }
+
+    .icon-circle {
+        top: -4px;
+        left: -4px;
+        z-index: 10;
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        position: absolute;
+        box-sizing: content-box;
+        border: 4px solid #64ffda;
+        animation: circle-fill 0.75s;
+    }
+
+    .icon-fix {
+        top: 8px;
+        width: 5px;
+        left: 26px;
+        z-index: 1;
+        height: 85px;
+        position: absolute;
+        transform: rotate(-45deg);
+        background-color: #112240;
+    }
+
+    @keyframes rotate-circle {
+        0% { transform: rotate(-45deg); }
+        5% { transform: rotate(-45deg); }
+        12% { transform: rotate(-405deg); }
+        100% { transform: rotate(-405deg); }
+    }
+
+    @keyframes icon-line-tip {
+        0% { width: 0; left: 1px; top: 19px; }
+        54% { width: 0; left: 1px; top: 19px; }
+        70% { width: 50px; left: -8px; top: 37px; }
+        84% { width: 17px; left: 21px; top: 48px; }
+        100% { width: 25px; left: 14px; top: 46px; }
+    }
+
+    @keyframes icon-line-long {
+        0% { width: 0; right: 46px; top: 54px; }
+        65% { width: 0; right: 46px; top: 54px; }
+        84% { width: 55px; right: 0px; top: 35px; }
+        100% { width: 47px; right: 8px; top: 38px; }
+    }
+
+    @keyframes circle-fill {
+        0% { transform: scale(0); }
+        100% { transform: scale(1); }
+    }
+
+    /* Error X Animation */
+    .error-icon {
+        width: 80px;
+        height: 80px;
+        margin: 0 auto;
+        position: relative;
+        border: 4px solid #ef4444;
+        border-radius: 50%;
+        animation: circle-fill 0.5s;
+    }
+
+    .error-x {
+        position: relative;
+        height: 80px;
+    }
+
+    .error-x::before,
+    .error-x::after {
+        position: absolute;
+        content: '';
+        width: 4px;
+        height: 40px;
+        background: #ef4444;
+        border-radius: 2px;
+        top: 20px;
+        left: 38px;
+    }
+
+    .error-x::before {
+        transform: rotate(45deg);
+        animation: error-x-left 0.5s;
+    }
+
+    .error-x::after {
+        transform: rotate(-45deg);
+        animation: error-x-right 0.5s;
+    }
+
+    @keyframes error-x-left {
+        0% { transform: rotate(45deg) scale(0); }
+        100% { transform: rotate(45deg) scale(1); }
+    }
+
+    @keyframes error-x-right {
+        0% { transform: rotate(-45deg) scale(0); }
+        100% { transform: rotate(-45deg) scale(1); }
     }
     </style>
 </head>
@@ -1455,14 +1614,28 @@
                     </p>
                 </div>
                 <div>
-                    <form class="space-y-6">
-                        <div class="grid md:grid-cols-2 gap-4">
-                            <input type="text" id="name" placeholder="Your Name" class="w-full p-3 bg-secondary-bg rounded-md border border-highlight/20 focus:border-highlight outline-none">
-                            <input type="email" id="email" placeholder="Your Email" class="w-full p-3 bg-secondary-bg rounded-md border border-highlight/20 focus:border-highlight outline-none">
+                    <form id="contact-form" onsubmit="sendEmail(event)" class="space-y-6">
+                        <div>
+                            <label for="name" class="block text-sm font-medium text-secondary-text">Name</label>
+                            <input type="text" id="name" name="name" required 
+                                   class="mt-1 block w-full rounded-md bg-secondary-bg border-highlight/20 border text-white focus:border-highlight focus:ring-0">
                         </div>
-                        <textarea id="message" placeholder="Message" rows="5" class="w-full p-3 bg-secondary-bg rounded-md border border-highlight/20 focus:border-highlight outline-none"></textarea>
-                        <button onclick="sendMail()" class="px-6 py-3 bg-highlight text-secondary-bg rounded-md hover:bg-highlight/90 transition-colors">
-                            Send <i class="uil uil-message ml-2"></i>
+                        
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-secondary-text">Email</label>
+                            <input type="email" id="email" name="email" required 
+                                   class="mt-1 block w-full rounded-md bg-secondary-bg border-highlight/20 border text-white focus:border-highlight focus:ring-0">
+                        </div>
+                        
+                        <div>
+                            <label for="message" class="block text-sm font-medium text-secondary-text">Message</label>
+                            <textarea id="message" name="message" rows="4" required 
+                                      class="mt-1 block w-full rounded-md bg-secondary-bg border-highlight/20 border text-white focus:border-highlight focus:ring-0"></textarea>
+                        </div>
+                        
+                        <button id="submit-btn" type="submit" 
+                                class="w-full px-6 py-3 bg-highlight text-secondary-bg rounded-md hover:bg-highlight/90 transition-colors">
+                            Send Message
                         </button>
                     </form>
                 </div>
@@ -1700,53 +1873,63 @@
     });
     </script>
 
-    <!-- Add this script right before closing </body> tag -->
+    <!-- Replace the existing loader script with this -->
     <script>
-    // Loading Animation
-    document.addEventListener('DOMContentLoaded', () => {
-        // Create matrix rain effect
-        const matrixContainer = document.createElement('div');
-        matrixContainer.className = 'matrix-loader';
-        document.getElementById('loader').appendChild(matrixContainer);
+    // Check if this is the first load
+    if (!sessionStorage.getItem('hasLoaded')) {
+        // First time load
+        document.addEventListener('DOMContentLoaded', () => {
+            // Create particles
+            const particlesContainer = document.querySelector('.loading-particles');
+            for (let i = 0; i < 10; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = `${Math.random() * 100}%`;
+                particle.style.animationDelay = `${Math.random() * 2}s`;
+                particlesContainer.appendChild(particle);
+            }
 
-        // Generate matrix characters
-        for (let i = 0; i < 50; i++) {
-            const character = document.createElement('div');
-            character.className = 'matrix-character';
-            character.style.left = `${Math.random() * 100}%`;
-            character.style.animationDuration = `${Math.random() * 2 + 1}s`;
-            character.style.animationDelay = `${Math.random() * 2}s`;
-            character.textContent = String.fromCharCode(0x30A0 + Math.random() * 96);
-            matrixContainer.appendChild(character);
-        }
+            // Loading text animation
+            const loadingTexts = [
+                'LOADING',
+                'INITIALIZING',
+                'PREPARING',
+                'LAUNCHING'
+            ];
 
-        // Hide loader after animation
-        setTimeout(() => {
-            const loader = document.getElementById('loader');
-            loader.style.opacity = '0';
-            loader.style.transition = 'opacity 0.5s ease-out';
+            const loadingElement = document.querySelector('.loading-text');
+            let textIndex = 0;
+
+            setInterval(() => {
+                loadingElement.style.opacity = '0';
+                setTimeout(() => {
+                    loadingElement.textContent = loadingTexts[textIndex];
+                    loadingElement.style.opacity = '1';
+                    textIndex = (textIndex + 1) % loadingTexts.length;
+                }, 200);
+            }, 2000);
+
+            // Hide loader after animation
             setTimeout(() => {
+                const loader = document.getElementById('loader');
+                loader.style.opacity = '0';
+                loader.style.transition = 'opacity 0.8s ease-out';
+                setTimeout(() => {
+                    loader.style.display = 'none';
+                    // Set the flag in sessionStorage
+                    sessionStorage.setItem('hasLoaded', 'true');
+                }, 800);
+            }, 3000);
+        });
+    } else {
+        // Not first load - hide loader immediately
+        document.addEventListener('DOMContentLoaded', () => {
+            const loader = document.getElementById('loader');
+            if (loader) {
                 loader.style.display = 'none';
-            }, 500);
-        }, 3000); // Adjust timing as needed
-    });
-
-    // Update loading text
-    const loadingTexts = [
-        'INITIALIZING',
-        'LOADING MODULES',
-        'ESTABLISHING CONNECTION',
-        'RENDERING INTERFACE'
-    ];
-
-    let textIndex = 0;
-    const glitchText = document.querySelector('.glitch-text');
-
-    setInterval(() => {
-        glitchText.setAttribute('data-text', loadingTexts[textIndex]);
-        glitchText.textContent = loadingTexts[textIndex];
-        textIndex = (textIndex + 1) % loadingTexts.length;
-    }, 800);
+            }
+        });
+    }
     </script>
 
     <!-- Update the script before closing </body> tag -->
@@ -1793,5 +1976,277 @@
         }, 3000);
     });
     </script>
+
+    <!-- Add this script after your existing scripts -->
+    <script>
+    function sendEmail(e) {
+        e.preventDefault();
+        
+        // Get form data
+        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
+        const message = document.getElementById('message').value;
+        const submitBtn = document.getElementById('submit-btn');
+        
+        // Validate form data
+        if (!name || !email || !message) {
+            showErrorMessage("Please fill in all fields");
+            return;
+        }
+
+        // Show loading state
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = `
+            <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-secondary-bg inline" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+        </svg>
+        Sending...
+    `;
+
+        // Add console logs for debugging
+        console.log("Sending email with data:", { name, email, message });
+
+        // Send email using EmailJS with your correct service ID
+        emailjs.send(
+            "service_kspom3f", // Your correct service ID from the image
+            "template_et2zj59", // Your template ID - make sure this is correct
+            {
+                to_name: "Nirmal",
+                from_name: name,
+                from_email: email,
+                message: message,
+                reply_to: email,
+            }
+        ).then(
+            function(response) {
+                console.log("SUCCESS!", response.status, response.text);
+                showSuccessMessage();
+                document.getElementById('contact-form').reset();
+            },
+            function(error) {
+                console.log("FAILED...", error);
+                showErrorMessage("Failed to send message. Please try again.");
+            }
+        ).finally(() => {
+            // Reset button state
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = 'Send Message';
+        });
+    }
+
+    // Update your error message function to accept custom messages
+    function showErrorMessage(message = "Something went wrong. Please try again.") {
+        const errorMsg = document.createElement('div');
+        errorMsg.className = 'fixed top-0 left-0 w-full h-full flex items-center justify-center z-50 bg-bg-primary/80 backdrop-blur-sm';
+        errorMsg.innerHTML = `
+            <div class="bg-secondary-bg p-8 rounded-lg shadow-2xl transform transition-all duration-500 scale-0">
+                <div class="error-icon">
+                    <div class="error-x"></div>
+                </div>
+                <h3 class="text-2xl font-bold text-red-500 text-center mt-4">Oops!</h3>
+                <p class="text-secondary-text text-center mt-2">${message}</p>
+                <button onclick="this.parentElement.parentElement.remove()" class="mt-6 w-full px-6 py-3 bg-red-500 text-white rounded-md hover:bg-red-600 transition-colors">
+                    Close
+                </button>
+            </div>
+        `;
+        document.body.appendChild(errorMsg);
+
+        setTimeout(() => {
+            errorMsg.querySelector('div').classList.remove('scale-0');
+        }, 100);
+    }
+
+    function showSuccessMessage() {
+        // Create success message container
+        const successMsg = document.createElement('div');
+        successMsg.className = 'fixed top-0 left-0 w-full h-full flex items-center justify-center z-50 bg-bg-primary/80 backdrop-blur-sm';
+        successMsg.innerHTML = `
+            <div class="bg-secondary-bg p-8 rounded-lg shadow-2xl transform transition-all duration-500 scale-0">
+                <div class="success-checkmark">
+                    <div class="check-icon">
+                        <span class="icon-line line-tip"></span>
+                        <span class="icon-line line-long"></span>
+                        <div class="icon-circle"></div>
+                        <div class="icon-fix"></div>
+                    </div>
+                </div>
+                <h3 class="text-2xl font-bold text-highlight text-center mt-4">Message Sent!</h3>
+                <p class="text-secondary-text text-center mt-2">Thank you for reaching out.</p>
+                <button onclick="this.parentElement.parentElement.remove()" class="mt-6 w-full px-6 py-3 bg-highlight text-secondary-bg rounded-md hover:bg-highlight/90 transition-colors">
+                    Close
+                </button>
+            </div>
+        `;
+        document.body.appendChild(successMsg);
+
+        // Animate in
+        setTimeout(() => {
+            successMsg.querySelector('div').classList.remove('scale-0');
+        }, 100);
+    }
+    </script>
+
+    <!-- Add these styles to your existing <style> tag -->
+    <style>
+    /* Success Checkmark Animation */
+    .success-checkmark {
+        width: 80px;
+        height: 80px;
+        margin: 0 auto;
+        position: relative;
+    }
+
+    .check-icon {
+        width: 80px;
+        height: 80px;
+        position: relative;
+        border-radius: 50%;
+        box-sizing: content-box;
+        border: 4px solid #64ffda;
+    }
+
+    .check-icon::before {
+        top: 3px;
+        left: -2px;
+        width: 30px;
+        transform-origin: 100% 50%;
+        border-radius: 100px 0 0 100px;
+    }
+
+    .check-icon::after {
+        top: 0;
+        left: 30px;
+        width: 60px;
+        transform-origin: 0 50%;
+        border-radius: 0 100px 100px 0;
+        animation: rotate-circle 4.25s ease-in;
+    }
+
+    .icon-line {
+        height: 5px;
+        background-color: #64ffda;
+        display: block;
+        border-radius: 2px;
+        position: absolute;
+        z-index: 10;
+    }
+
+    .icon-line.line-tip {
+        top: 46px;
+        left: 14px;
+        width: 25px;
+        transform: rotate(45deg);
+        animation: icon-line-tip 0.75s;
+    }
+
+    .icon-line.line-long {
+        top: 38px;
+        right: 8px;
+        width: 47px;
+        transform: rotate(-45deg);
+        animation: icon-line-long 0.75s;
+    }
+
+    .icon-circle {
+        top: -4px;
+        left: -4px;
+        z-index: 10;
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        position: absolute;
+        box-sizing: content-box;
+        border: 4px solid #64ffda;
+        animation: circle-fill 0.75s;
+    }
+
+    .icon-fix {
+        top: 8px;
+        width: 5px;
+        left: 26px;
+        z-index: 1;
+        height: 85px;
+        position: absolute;
+        transform: rotate(-45deg);
+        background-color: #112240;
+    }
+
+    @keyframes rotate-circle {
+        0% { transform: rotate(-45deg); }
+        5% { transform: rotate(-45deg); }
+        12% { transform: rotate(-405deg); }
+        100% { transform: rotate(-405deg); }
+    }
+
+    @keyframes icon-line-tip {
+        0% { width: 0; left: 1px; top: 19px; }
+        54% { width: 0; left: 1px; top: 19px; }
+        70% { width: 50px; left: -8px; top: 37px; }
+        84% { width: 17px; left: 21px; top: 48px; }
+        100% { width: 25px; left: 14px; top: 46px; }
+    }
+
+    @keyframes icon-line-long {
+        0% { width: 0; right: 46px; top: 54px; }
+        65% { width: 0; right: 46px; top: 54px; }
+        84% { width: 55px; right: 0px; top: 35px; }
+        100% { width: 47px; right: 8px; top: 38px; }
+    }
+
+    @keyframes circle-fill {
+        0% { transform: scale(0); }
+        100% { transform: scale(1); }
+    }
+
+    /* Error X Animation */
+    .error-icon {
+        width: 80px;
+        height: 80px;
+        margin: 0 auto;
+        position: relative;
+        border: 4px solid #ef4444;
+        border-radius: 50%;
+        animation: circle-fill 0.5s;
+    }
+
+    .error-x {
+        position: relative;
+        height: 80px;
+    }
+
+    .error-x::before,
+    .error-x::after {
+        position: absolute;
+        content: '';
+        width: 4px;
+        height: 40px;
+        background: #ef4444;
+        border-radius: 2px;
+        top: 20px;
+        left: 38px;
+    }
+
+    .error-x::before {
+        transform: rotate(45deg);
+        animation: error-x-left 0.5s;
+    }
+
+    .error-x::after {
+        transform: rotate(-45deg);
+        animation: error-x-right 0.5s;
+    }
+
+    @keyframes error-x-left {
+        0% { transform: rotate(45deg) scale(0); }
+        100% { transform: rotate(45deg) scale(1); }
+    }
+
+    @keyframes error-x-right {
+        0% { transform: rotate(-45deg) scale(0); }
+        100% { transform: rotate(-45deg) scale(1); }
+    }
+    </style>
 </body>
 </html>
