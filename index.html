@@ -5,512 +5,515 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nirmal Boghara</title>
     <link rel="icon" href="images (1).png">
-
-    <link rel="stylesheet" href="style.css">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@iconscout/unicons@4.0.8/css/line.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
-    <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js">
+    <!-- EmailJS -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script src="https://unpkg.com/split-type"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'bg-primary': '#0a192f',
+                        'secondary-bg': '#112240',
+                        'highlight': '#64ffda',
+                        'secondary-text': '#8892b0',
+                        'nav-bg': 'rgba(10, 25, 47, 0.85)',
+                    },
+                    fontFamily: {
+                        'poppins': ['Poppins', 'sans-serif'],
+                        'cinzel': ['Cinzel', 'serif'],
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.5s ease-out forwards',
+                        'slide-up': 'slideUp 0.5s ease-out forwards',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        slideUp: {
+                            '0%': { transform: 'translateY(20px)' },
+                            '100%': { transform: 'translateY(0)' },
+                        },
+                    },
+                }
+            }
+        }
     </script>
-    
+
     <script type="text/javascript">
         (function(){
             emailjs.init("SfbY2GRHXou-VB3dn");
         })();
     </script>
-
 </head>
-<body>
-    
-    <div class="container">
-        <nav id="header">
 
-            <!--Logo-->
-            <div class="nav-logo">
-                <p class="nav-name">NB</p>
+<body class="bg-bg-primary font-poppins text-white">
+    <div class="relative">
+        <!-- Navigation -->
+        <nav class="fixed w-full h-20 bg-nav-bg backdrop-blur-md px-[10vw] transition-all duration-300 z-50 flex justify-between items-center border-b border-highlight/10">
+            <!-- Logo -->
+            <div class="relative p-2.5">
+                <p class="font-cinzel text-2xl font-bold text-highlight tracking-wider">NB</p>
             </div>
 
-            <!--Menu-->
-            <div class="nav-menu" id="myNavMenu">
-                <ul class="nav_menu_list">
-                    <li class="nav-list">
-                        <a href="#home" class="nav-link">Home</a>
-                        <div class="circle"></div>
-                    </li>
-                    <li class="nav-list">
-                        <a href="#about" class="nav-link ">About</a>
-                        <div class="circle"></div>
-                    </li>
-                    <li class="nav-list">
-                        <a href="#projects" class="nav-link ">Education</a>
-                        <div class="circle"></div>
-                    </li>
-                    <li class="nav-list">
-                        <a href="#experience" class="nav-link ">Experience</a>
-                        <div class="circle"></div>
-                    </li>
-                    <li class="nav-list">
-                        <a href="#contact" class="nav-link ">Contact</a>
-                        <div class="circle"></div>
-                    </li>
+            <!-- Menu -->
+            <div class="hidden lg:block" id="myNavMenu">
+                <ul class="flex gap-8">
+                    <li><a href="#home" class="text-white hover:text-highlight hover:bg-highlight/10 px-4 py-2.5 rounded transition-all">Home</a></li>
+                    <li><a href="#about" class="text-white hover:text-highlight hover:bg-highlight/10 px-4 py-2.5 rounded transition-all">About</a></li>
+                    <li><a href="#education" class="text-white hover:text-highlight hover:bg-highlight/10 px-4 py-2.5 rounded transition-all">Education</a></li>
+                    <li><a href="#experience" class="text-white hover:text-highlight hover:bg-highlight/10 px-4 py-2.5 rounded transition-all">Experience</a></li>
+                    <li><a href="#projects" class="text-white hover:text-highlight hover:bg-highlight/10 px-4 py-2.5 rounded transition-all">Projects</a></li>
+                    <li><a href="#contact" class="text-white hover:text-highlight hover:bg-highlight/10 px-4 py-2.5 rounded transition-all">Contact</a></li>
                 </ul>
             </div>
 
-            <!--Dark Mode-->
-            <!-- <div class="mode">
-                <div class="moon-sun" id="toggle-switch">
-                    <i class="fa fa-moon" id="moon"></i>
-                    <i class="fa fa-sun" id="sun"></i>
-                </div>
-            </div> -->
-            <div class="nav-menu-btn">
-                <i class="uil uil-bars" style="color: #fff;" onclick="myMenuFunction()"></i>
+            <!-- Mobile Menu Button -->
+            <div class="lg:hidden">
+                <button onclick="myMenuFunction()" class="text-white">
+                    <i class="uil uil-bars text-2xl"></i>
+                </button>
             </div>
         </nav>
 
-        <!--main-->
-        <main class="wrapper">
-            <section class="featured-box" id="home">
-                <div class="featured-text">
-                    <div class="hello">
-                        <p>HI, I'M NIRMAL!</p>
-                    </div>
-                    <div class="featured-name">
+        <!-- Hero Section -->
+        <section id="home" class="min-h-screen pt-20 px-[10vw] flex items-center">
+            <div class="grid md:grid-cols-2 gap-8 items-center">
+                <div class="space-y-6">
+                    <h1 class="font-cinzel text-6xl bg-gradient-to-r from-white to-highlight bg-clip-text text-transparent">
+                        Hi, I'm Nirmal!
+                    </h1>
+                    <div class="text-4xl font-semibold">
                         <span class="typedText"></span>
                     </div>
-                    <div class="text-info">
-                        <p>AI/ML Enthusiast /> Software Engineer />Web Developer</p>
-                    </div>
-                    <div class="text-btn">
-                        <a href="#contact">
-                            <button class="btn hire-btn">Hire Me</button>
-                            <!-- <button class="btn hire-btn">Resume</button> -->
-
+                    <p class="text-secondary-text text-lg">
+                        MS Computer Science Student @ NYU / Software Engineer
+                    </p>
+                    <div class="flex gap-4">
+                        <a href="#contact" class="px-6 py-3 bg-highlight text-secondary-bg rounded-md hover:bg-highlight/90 transition-colors">
+                            Contact Me
                         </a>
-                            <a href="Nirmal Pravinbhai Boghara Resume .pdf" download>
-                                <button class="btn">Download Resume <i class="uil uil-file"></i></button>
-                            </a>
+                        <a href="Nirmal_Boghara_Resume.pdf" download class="px-6 py-3 border border-highlight text-highlight rounded-md hover:bg-highlight/10 transition-colors">
+                            Download Resume <i class="uil uil-file ml-2"></i>
+                        </a>
                     </div>
-                    <div class="social-icons">
-                        <div class="icon">
-                            <a href="https://www.instagram.com/18.nirmal_/" style="color: #fff;">
-                                <i class="uil uil-instagram"></i>
-                            </a>
-                        </div>
-        
-                        <div class="icon">
-                            <a href="https://www.linkedin.com/in/nirmal-boghara/" style="text-decoration: none;">
-                                <i class="fa-brands fa-linkedin-in icon"></i>
-                            </a>
-                        </div>
-        
-                        <div class="icon">
-                            <a href="https://github.com/nirmal141" style="color: #fff;">
-                                <i class="uil uil-github-alt"></i>
-                            </a>
-                        </div>
+                    <div class="flex gap-4">
+                        <a href="https://github.com/nirmal141" target="_blank" class="text-2xl text-secondary-text hover:text-highlight transition-colors">
+                            <i class="uil uil-github-alt"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/nirmal-boghara/" target="_blank" class="text-2xl text-secondary-text hover:text-highlight transition-colors">
+                            <i class="fa-brands fa-linkedin-in"></i>
+                        </a>
                     </div>
                 </div>
-                <div class="featured-image">
-                    <div class="image">
-                        <img src="/profile-pic (13).png" alt="" >
-                    </div>
+                <div class="hidden md:block">
+                    <img src="./profilepicture.png" alt="Profile Picture" class="w-full max-w-md mx-auto rounded-lg">
                 </div>
-            </section>
-
-            <!--about box-->
-            <section class="section" id="about">
-                <div class="top-header">
-                    <h1>About Me</h1>
-                    <hr>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <div class="about-info">
-                            <figure class="about-me">
-                                <figcaption>
-                                    <img src="" alt="" class="profile">
-                                    <h2>Software Engineer | Web Developer</h2>
-                                    <p>With a passion for innovation and a diverse skill set spanning across software development, web development, and AI/ML engineering, I bring a unique blend of creativity and technical expertise to the table. My journey in technology has been driven by a relentless pursuit of excellence, coupled with a commitment to staying abreast of the latest advancements in the field. Whether it's crafting elegant web solutions, architecting robust software systems, or delving into the realms of artificial intelligence and machine learning, I am dedicated to delivering impactful results that exceed expectations.</p>
-                                </figcaption>
-                            </figure>
-                            <a href="#contact">
-                                <button class="about-me-btn">
-                                    Hire Me
-                                </button>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="skill">
-                        <div class="skill-box">
-                            <div class="skill-items"">
-                                <img src="data:image/png;base64,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" alt="">
-                                <span class="title">HTML</span>
-                            </div>
-                                
-                            <div class="skill-bar">
-                                <span class="skill-per">
-                                    <span class="tooltip">100%</span>
-                                </span>
-                            </div>
-                        </div>
-
-                        <div class="skill-box">
-
-                            <div class="skill-items">
-                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/CSS3_logo_and_wordmark.svg/1200px-CSS3_logo_and_wordmark.svg.png" alt="">
-                                <span class="title">CSS</span>
-                            </div>
-                            <div class="skill-bar">
-                                <span class="skill-per css">
-                                    <span class="tooltip">95%</span>
-                                </span>
-                            </div>
-                        </div>
-
-                        <div class="skill-box">
-
-                            <div class="skill-items">
-                                <img src="https://www.ntuclearninghub.com/documents/39367/4216797/Python-Symbol.png/369e410e-a90f-f887-c2dc-61f7ef761476/" alt="">
-                                <span class="title">Python</span>
-                            </div>
-                            <div class="skill-bar">
-                                <span class="skill-per python">
-                                    <span class="tooltip">90%</span>
-                                </span>
-                            </div>
-                        </div>
-
-                        <div class="skill-box">
-
-                            <div class="skill-items">
-                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/JavaScript-logo.png/768px-JavaScript-logo.png" alt="">
-                                <span class="title">JavaScript</span>
-                            </div>
-                            <div class="skill-bar">
-                                <span class="skill-per javascript">
-                                    <span class="tooltip">80%</span>
-                                </span>
-                            </div>
-                        </div>
-
-                        <div class="skill-box">
-
-                            <div class="skill-items">
-                                <img src="https://www.macworld.com/wp-content/uploads/2023/01/learn_java_on_mac.jpg?quality=50&strip=all" alt="">
-                                <span class="title">Java</span>
-                            </div>
-                            <div class="skill-bar">
-                                <span class="skill-per java">
-                                    <span class="tooltip">70%</span>
-                                </span>
-                            </div>
-                        </div>
-
-                        <div class="skill-box">
-
-                            <div class="skill-items">
-                                <img src="https://shethink.in/wp-content/uploads/2021/07/react.js-img.png" alt="">
-                                <span class="title">React.Js</span>
-                            </div>
-                            <div class="skill-bar">
-                                <span class="skill-per react">
-                                    <span class="tooltip">70%</span>
-                                </span>
-                            </div>
-                        </div>
-
-                        <div class="skill-box">
-
-                            <div class="skill-items">
-                                <img src="https://i0.wp.com/learn.onemonth.com/wp-content/uploads/2019/07/image2-1.png?fit=600%2C315&ssl=1" alt="">
-                                <span class="title">SQL/MySQL</span>
-                            </div>
-                            <div class="skill-bar">
-                                <span class="skill-per sql">
-                                    <span class="tooltip">85%</span>
-                                </span>
-                            </div>
-                        </div>
-
-                        <div class="skill-box">
-
-                            <div class="skill-items">
-                                <img src="https://cdn.activestate.com/wp-content/uploads/2019/10/neural-network-showndown-tensorflow-vs-pytorch.png" alt="">
-                                <span class="title">TensorFlow, PyTorch</span>
-                            </div>
-                            <div class="skill-bar">
-                                <span class="skill-per pytorch">
-                                    <span class="tooltip">60%</span>
-                                </span>
-                            </div>
-                        </div>
-
-                        <div class="skill-box">
-
-                            <div class="skill-items">
-                                <img src="https://www.php.net/images/meta-image.png" alt="">
-                                <span class="title">PHP</span>
-                            </div>
-                            <div class="skill-bar">
-                                <span class="skill-per php">
-                                    <span class="tooltip">50%</span>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section class="section" id="projects">
-                <div class="top-header">
-                    <h1>Education</h1>
-                    <hr>
-                </div>
-                <div class="project-container">
-                    <div class="project-box" >
-                        <div class="skill-items">
-                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRIsj3Q5pOq8svKYRfJs26g5P3cnUb7bQlNzA&usqp=CAU" alt="">
-                            <h3>Atharva College of Engineering, B.E. Computer Engineering</h3>
-                        </div>
-                        <label>July 2020 - June 2024, Mumbai, India</label>
-                        <p>Grade: 9.3 CGPA</p>
-                    </div>
-                    <div class="project-box">
-                        
-                        <div style="display: flex; align-items: center; gap: 20px;">
-                            <img width="100px" height="30px" src="https://svpjc.in/images/jc-logo.png" alt="">
-                            <h3>S.V.P. Junior College of Science and Commerce, HSC</h3>
-                        </div>
-                        <label>2018 - 2020, Mumbai, India</label>
-                        <p>Grade: 72%</p>
-                    </div>
-                    <div class="project-box">
-                        
-                        <div class="skill-items">
-                            <img src="https://xaviersgroup.co.in/wp-content/uploads/2023/04/cropped-sd.jpg" alt="">
-                            <h3>St.Xaviers High School, SSC</h3>
-                        </div>
-                        <label>2018, Mumbai, India</label>
-                        <p>Grade: 92%</p>
-                    </div>
-                   
-                </div>
-            </section>
-
-            <!--Project box-->
-            <section class="section" id="experience">
-                <div class="top-header">
-                    <h1>Experience</h1>
-                    <hr>
-                </div>
-                <div class="project-container">
-                    <div class="project-box">
-
-                        <div class="skill-items-experience">
-                            <img src="https://www.soulible.com/img/soulible_logo_light.png" alt="">
-                            <h3>AI Engineer, Soulible</h3>
-                        </div>
-                        <label>September 2023 - November 2023, Mumbai, India</label>
-                        <p>-Gathered and cleaned relevant data for training and testing models. A significant project entailed the development of a system for
-                            attendance tracking based on face recognition, employing computer vision algorithms.</p>
-                    </div>
-                    <div class="project-box">
-                        
-                        <div class="skill-items-experience">
-                            <img src="https://www.featsystems.com/_next/static/media/logo.89097c65.svg" alt="">
-                            <h3>Software Development Intern, Feat Systems</h3>
-                        </div>
-                        <label>May 2023 - August 2023, Mumbai, India</label>
-                        <p>-Assisted in troubleshooting, debugging, and resolving software defects and issues. Gained knowledge of programming languages
-                            such as Python, and C#. Got familiar with software development methodologies(e.g., Agile, Scrum). <br>
-                            -Documented software designs, coding procedures and user guides. Collaborated with the development team to design code, test, and
-                            maintain software solutions according to specifications.</p>
-                    </div>
-                    <div class="project-box">
-                        
-                        <div class="skill-items-experience">
-                            <img src="https://internship.codeclause.com/assets/img/logo.png" alt="">
-                            <h3>Web Development Intern, CodeClause</h3>
-                        </div>
-                        <label>June 2023 - July 2023, Pune, India</label>
-                        <p>-Designed and developed a personal blog website using a combination of modern frontend and backend technologies, including
-                            React, SQL, Node.Js, HTML, and Bootstrap. Crafted an intuitive and visually pleasing user interface using React components, HTML,
-                            and CSS.Implemented features such as note creation, editing, deletion, and categorization.</p>
-                    </div>
-                    <div class="project-box">
-                        
-                        <div class="skill-items-experience">
-                            <img src="https://goldenmace.com/images/logo.png" alt="">
-                            <h3>Full-Stack Developer, GoldenMace IT Solutions</h3>
-                        </div>
-                        <label>May 2022 - July 2022</label>
-                        <p>-Worked on a Business Dashboard for their client, where I worked on development with frameworks like React.js, and Angular.Js.
-                            Used Node.js, and Python for Server-Side Programming. Gained E ective communication skills for collaborating with team members and stakeholders.</p>
-                    </div>
-                </div>
-            </section>
-            
-            <section class="section">
-                <div class="top-header">
-                    <h1>Some of my past projects</h1>
-                    <hr>
-                </div>
-
-                <div class="main-project-container">
-                    <div class="main-project-box">
-                        <img src="Gymster.jpg" alt="">
-                        <h3>Fittify - Your One Stop Health Portfolio</h3>
-                        <!-- <p>This is a one-stop health solution and portfolio site where users can track their records, and we provide them perfect diet and -->
-                            <!-- workout plans using technologies like Express.Js, MongoDB and API’s.</p> -->
-                            <!-- <a href="#">Read More</a> -->
-                    </div>
-                    <div class="main-project-box">
-                        <img src="https://image.winudf.com/v2/image/bmV0Lm11Z2NhdC5ldmVyeWNoYXRfc2NyZWVuXzBfMTUzODYwNDEwOF8wMTY/screen-0.jpg?fakeurl=1&type=.jpg" alt="">
-                        <h3>Anonymous Chat Application</h3>
-                        <!-- <p>A user-friendly client interface for anonymous message exchange.</p> -->
-                            <!-- <a href="#">Read More</a> -->
-                    </div>
-                </div>
-                <div class="project-btn">
-                    <button class="about-me-btn">
-                        Have a Look!
-                    </button>
-                    <button class="about-me-btn">
-                        Have a Look!
-                    </button>
-                </div>
-
-                <div class="main-project-container">
-                    <div class="main-project-box">
-                        <img src="fitfarm.jpg"  alt="">
-                        <h3>FitFarm - Smart Agriculture System</h3>
-                        <!-- <p>This -->
-                            <!-- project integrates sophisticated Supervised ML algorithms (DT, SVM, KNN, RF, and NB) and an interactive dashboard using web programming technologies like HTML, React.JS, JavaScript, and Node.Js to predict the most suitable crops according to soil conditions with 85% accuracy and provide invaluable support to farmers.</p> -->
-                            <!-- <a href="#">Read More</a> -->
-                    </div>
-                    <div class="main-project-box">
-                        <img src="https://pictures.brafton.com/x_0_0_0_14119699_800.jpg" alt="">
-                        <h3>Weather Prediction System</h3>
-                        <!-- <p>This system utilizes ML algorithms, such as Naive Bayes and ensemble methods, to analyze and predict weather patterns.</p> -->
-                        <!-- <a href="#">Read More</a> -->
-                    </div>
-                    
-                </div>
-                <div class="project-btn">
-                    <button class="about-me-btn">
-                        Have a Look!
-                    </button>
-                    <button class="about-me-btn">
-                        Have a Look!
-                    </button>
-                </div>
-
-            </section>
-
-            <!--Contact box-->
-            <section class="section" id="contact">
-                <div class="top-header">
-                    <h1>Let's work Together</h1>
-                    
-                    <span>Do you have a project in mind, contact me here</span>
-                    <hr style="margin-top: 15px;">
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <div class="contact-info">
-                            <h2>Find Me <i class="uil uil-corner-right-down"></i></h2>
-                            <p><i class="uil uil-envelope">nirmalpatel284@gmail.com</i></p>
-                            
-                        </div>
-                    </div>
-
-
-                    <div class="col">
-
-
-                        <div class="form-control">
-                            <div class="form-inputs">
-                                
-                                <input type="text" class="input-fields" id="name" placeholder="Your Name">
-                            
-                                <input type="text" class="input-fields" id="email" placeholder="Your Email">
-                            </div>
-                            <div class="text-area">
-                                <!-- <input type="text" class="input-subject"  placeholder="Subject"> -->
-                                
-                                <textarea id="message" placeholder="Message"></textarea>
-                            </div>
-                            <div class="form-button">
-                                <button class="btn" onclick="sendMail()">Send <i class="uil uil-message"></i></button>
-                            </div>
-                        </div>
-                    </div>
-
-
-
-                </div>
-            </section>
-        </main>
-
-        <!--Footer-->
-        <footer>
-            <div class="middle-footer">
-                <ul class="footer-menu">
-                    <li class="footer_menu_list">
-                        <a href="#home">Home</a>
-                    </li>
-                    <li class="footer_menu_list">
-                        <a href="#about">About</a>
-                    </li>
-                    <li class="footer_menu_list">
-                        <a href="#projects">Education</a>
-                    </li>
-                    <li class="footer_menu_list">
-                        <a href="#contact">Contact</a>
-                    </li>
-                </ul>
             </div>
-            <div class="footer-social-icons">
-                <div class="icon">
-                    <a href="https://www.instagram.com/18.nirmal_/">
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="py-20 px-[10vw]">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold mb-4">About Me</h2>
+                <hr class="w-20 mx-auto border-highlight">
+            </div>
+            <div class="grid md:grid-cols-2 gap-12">
+                <div class="space-y-6">
+                    <p class="text-secondary-text leading-relaxed">
+                        With a passion for innovation and a diverse skill set spanning across software development, web development, and AI/ML engineering, I bring a unique blend of creativity and technical expertise to the table. My journey in technology has been driven by a relentless pursuit of excellence, coupled with a commitment to staying abreast of the latest advancements in the field.
+                    </p>
+                    <a href="#contact" class="inline-block px-6 py-3 bg-highlight text-secondary-bg rounded-md hover:bg-highlight/90 transition-colors">
+                        Hire Me
+                    </a>
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <!-- Skills -->
+                    <div class="space-y-4">
+                        <h3 class="text-xl font-semibold text-highlight">Languages</h3>
+                        <div class="space-y-2">
+                            <div class="flex items-center gap-2">
+                                <span class="w-2 h-2 bg-highlight rounded-full"></span>
+                                <span>Java</span>
+                            </div>
+                            <!-- Add more skills -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section with Interactive Cards -->
+        <section id="skills" class="py-20 px-[10vw] relative overflow-hidden perspective-1000">
+
+            <!-- Section Header with Glitch Effect -->
+            <div class="text-center mb-16 relative glitch-container">
+                <h2 class="text-4xl font-bold mb-4 glitch" data-text="Technical Arsenal">
+                    Technical Arsenal
+                </h2>
+                <p class="text-secondary-text animate-pulse">Hover over skills to explore details</p>
+                <div class="cyber-bar"></div>
+            </div>
+
+            <!-- Skills Filter -->
+            <div class="flex justify-center gap-4 mb-12 flex-wrap">
+                <button class="skill-filter-btn active" data-filter="all">
+                    All Skills
+                </button>
+                <button class="skill-filter-btn" data-filter="languages">
+                    Languages
+                </button>
+                <button class="skill-filter-btn" data-filter="frameworks">
+                    Frameworks
+                </button>
+                <button class="skill-filter-btn" data-filter="tools">
+                    Tools
+                </button>
+                <button class="skill-filter-btn" data-filter="ml">
+                    ML/AI
+                </button>
+            </div>
+
+            <!-- Interactive Skill Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 perspective-container">
+                <!-- Languages Card -->
+                <div class="skill-card transform-3d" data-category="languages">
+                    <div class="relative group bg-secondary-bg p-6 rounded-xl border border-highlight/10 hover:border-highlight/30 transition-all duration-500 transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-highlight/10">
+                        <div class="absolute inset-0 bg-gradient-to-r from-highlight/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl"></div>
+                        
+                        <div class="flex items-center gap-3 mb-6">
+                            <i class="fas fa-code text-2xl text-highlight"></i>
+                            <h3 class="text-xl font-semibold text-white">Languages</h3>
+                        </div>
+
+                        <div class="space-y-4">
+                            <div class="skill-bar-container">
+                                <div class="flex justify-between mb-1">
+                                    <span class="text-sm text-secondary-text">Java</span>
+                                    <span class="text-sm text-highlight">95%</span>
+                                </div>
+                                <div class="h-2 bg-secondary-bg/50 rounded-full overflow-hidden">
+                                    <div class="h-full w-[95%] bg-gradient-to-r from-highlight to-highlight/50"></div>
+                                </div>
+                            </div>
+
+                            <div class="skill-bar-container">
+                                <div class="flex justify-between mb-1">
+                                    <span class="text-sm text-secondary-text">C#</span>
+                                    <span class="text-sm text-highlight">90%</span>
+                                </div>
+                                <div class="h-2 bg-secondary-bg/50 rounded-full overflow-hidden">
+                                    <div class="h-full w-[90%] bg-gradient-to-r from-highlight to-highlight/50"></div>
+                                </div>
+                            </div>
+
+                            <!-- Add more languages with similar structure -->
+                            <!-- SQL, JavaScript, HTML, R -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Development Card -->
+                <div class="skill-card" data-category="frameworks">
+                    <div class="relative group bg-secondary-bg p-6 rounded-xl border border-highlight/10 hover:border-highlight/30 transition-all duration-500 transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-highlight/10">
+                        <div class="absolute inset-0 bg-gradient-to-r from-highlight/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl"></div>
+                        
+                        <div class="flex items-center gap-3 mb-6">
+                            <i class="fas fa-laptop-code text-2xl text-highlight"></i>
+                            <h3 class="text-xl font-semibold text-white">Development</h3>
+                        </div>
+
+                        <div class="space-y-4">
+                            <div class="skill-bar-container">
+                                <div class="flex justify-between mb-1">
+                                    <span class="text-sm text-secondary-text">React.js</span>
+                                    <span class="text-sm text-highlight">90%</span>
+                                </div>
+                                <div class="h-2 bg-secondary-bg/50 rounded-full overflow-hidden">
+                                    <div class="h-full w-[90%] bg-gradient-to-r from-highlight to-highlight/50"></div>
+                                </div>
+                            </div>
+                            <!-- Add more frameworks with the same structure -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tools Card -->
+                <div class="skill-card" data-category="tools">
+                    <div class="relative group bg-secondary-bg p-6 rounded-xl border border-highlight/10 hover:border-highlight/30 transition-all duration-500 transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-highlight/10">
+                        <div class="absolute inset-0 bg-gradient-to-r from-highlight/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl"></div>
+                        
+                        <div class="flex items-center gap-3 mb-6">
+                            <i class="fas fa-tools text-2xl text-highlight"></i>
+                            <h3 class="text-xl font-semibold text-white">Tools</h3>
+                        </div>
+
+                        <div class="space-y-4">
+                            <div class="skill-bar-container">
+                                <div class="flex justify-between mb-1">
+                                    <span class="text-sm text-secondary-text">Git</span>
+                                    <span class="text-sm text-highlight">95%</span>
+                                </div>
+                                <div class="h-2 bg-secondary-bg/50 rounded-full overflow-hidden">
+                                    <div class="h-full w-[95%] bg-gradient-to-r from-highlight to-highlight/50"></div>
+                                </div>
+                            </div>
+                            <!-- Add more tools with the same structure -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Machine Learning Card -->
+                <div class="skill-card" data-category="ml">
+                    <div class="relative group bg-secondary-bg p-6 rounded-xl border border-highlight/10 hover:border-highlight/30 transition-all duration-500 transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-highlight/10">
+                        <div class="absolute inset-0 bg-gradient-to-r from-highlight/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl"></div>
+                        
+                        <div class="flex items-center gap-3 mb-6">
+                            <i class="fas fa-brain text-2xl text-highlight"></i>
+                            <h3 class="text-xl font-semibold text-white">ML/AI</h3>
+                        </div>
+
+                        <div class="space-y-4">
+                            <div class="skill-bar-container">
+                                <div class="flex justify-between mb-1">
+                                    <span class="text-sm text-secondary-text">TensorFlow</span>
+                                    <span class="text-sm text-highlight">85%</span>
+                                </div>
+                                <div class="h-2 bg-secondary-bg/50 rounded-full overflow-hidden">
+                                    <div class="h-full w-[85%] bg-gradient-to-r from-highlight to-highlight/50"></div>
+                                </div>
+                            </div>
+                            <!-- Add more ML/AI skills with the same structure -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience Section -->
+        <section id="experience" class="py-20 px-[10vw]">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold mb-4">Professional Experience</h2>
+                <p class="text-secondary-text">My journey through various tech roles</p>
+                <hr class="w-20 mx-auto border-highlight mt-4">
+            </div>
+
+            <!-- Timeline Container -->
+            <div class="relative">
+                <!-- Timeline Line -->
+                <div class="absolute left-0 md:left-1/2 h-full w-0.5 bg-highlight/20 transform -translate-x-1/2"></div>
+
+                <!-- Experience Items -->
+                <div class="space-y-16">
+                    <!-- Bitnine -->
+                    <div class="group relative flex flex-col md:flex-row items-center md:justify-between md:odd:flex-row-reverse">
+                        <!-- Timeline Dot -->
+                        <div class="absolute left-0 md:left-1/2 w-4 h-4 bg-highlight rounded-full transform -translate-x-1/2 transition-transform duration-300 group-hover:scale-150"></div>
+                        
+                        <!-- Date -->
+                        <div class="w-full md:w-5/12 mb-8 md:mb-0 text-right md:group-odd:text-left">
+                            <span class="text-highlight font-semibold">Apr 2024 - Jun 2024</span>
+                            <p class="text-secondary-text">San Francisco, CA</p>
+                        </div>
+
+                        <!-- Content -->
+                        <div class="w-full md:w-5/12 bg-secondary-bg p-6 rounded-xl border border-highlight/10 hover:border-highlight/30 transition-all duration-300 transform hover:-translate-y-2 hover:shadow-xl hover:shadow-highlight/5">
+                            <div class="flex items-center gap-4 mb-4">
+                                <img src="bitnine-logo.png" alt="Bitnine" class="w-12 h-12 rounded-full bg-white p-2">
+                                <div>
+                                    <h3 class="text-xl font-semibold text-white">Software Engineering Intern</h3>
+                                    <p class="text-highlight">Bitnine</p>
+                                </div>
+                            </div>
+                            <ul class="space-y-3 text-secondary-text">
+                                <li class="flex items-start gap-2">
+                                    <span class="text-highlight mt-1.5">▹</span>
+                                    <span>Contributed as a junior developer on OCI C driver for PostgreSQL, achieving improved Oracle compatibility through reverse engineering.</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <span class="text-highlight mt-1.5">▹</span>
+                                    <span>Optimized & enhanced ODBC C driver for PostgreSQL databases with Oracle compatibility, resulting in performance gain in query executions.</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <span class="text-highlight mt-1.5">▹</span>
+                                    <span>Resolved 20+ critical issues in the Python driver for Apache AGE project as an open-source contributor.</span>
+                                </li>
+                            </ul>
+                            <div class="flex flex-wrap gap-2 mt-4">
+                                <span class="px-2 py-1 bg-highlight/10 text-highlight rounded-full text-xs">PostgreSQL</span>
+                                <span class="px-2 py-1 bg-highlight/10 text-highlight rounded-full text-xs">C</span>
+                                <span class="px-2 py-1 bg-highlight/10 text-highlight rounded-full text-xs">Python</span>
+                                <span class="px-2 py-1 bg-highlight/10 text-highlight rounded-full text-xs">Oracle</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Soulible Digital -->
+                    <div class="group relative flex flex-col md:flex-row items-center md:justify-between">
+                        <div class="absolute left-0 md:left-1/2 w-4 h-4 bg-highlight rounded-full transform -translate-x-1/2 transition-transform duration-300 group-hover:scale-150"></div>
+                        
+                        <div class="w-full md:w-5/12 mb-8 md:mb-0 text-right">
+                            <span class="text-highlight font-semibold">Sep 2023 - Nov 2023</span>
+                            <p class="text-secondary-text">Maharashtra, India</p>
+                        </div>
+
+                        <div class="w-full md:w-5/12 bg-secondary-bg p-6 rounded-xl border border-highlight/10 hover:border-highlight/30 transition-all duration-300 transform hover:-translate-y-2 hover:shadow-xl hover:shadow-highlight/5">
+                            <div class="flex items-center gap-4 mb-4">
+                                <img src="soulible-logo.png" alt="Soulible Digital" class="w-12 h-12 rounded-full bg-white p-2">
+                                <div>
+                                    <h3 class="text-xl font-semibold text-white">Artificial Intelligence Intern</h3>
+                                    <p class="text-highlight">Soulible Digital</p>
+                                </div>
+                            </div>
+                            <ul class="space-y-3 text-secondary-text">
+                                <li class="flex items-start gap-2">
+                                    <span class="text-highlight mt-1.5">▹</span>
+                                    <span>Engineered an attendance tracking system using YOLOv7 with TensorFlow and Keras, reducing manual tracking by 15%.</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <span class="text-highlight mt-1.5">▹</span>
+                                    <span>Analyzed the face recognition attendance system using Python, NumPy, and Pandas, boosting efficiency by 30%.</span>
+                                </li>
+                            </ul>
+                            <div class="flex flex-wrap gap-2 mt-4">
+                                <span class="px-2 py-1 bg-highlight/10 text-highlight rounded-full text-xs">YOLOv7</span>
+                                <span class="px-2 py-1 bg-highlight/10 text-highlight rounded-full text-xs">TensorFlow</span>
+                                <span class="px-2 py-1 bg-highlight/10 text-highlight rounded-full text-xs">Keras</span>
+                                <span class="px-2 py-1 bg-highlight/10 text-highlight rounded-full text-xs">Python</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Add Feat Systems and Goldenmace IT Solutions similarly -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="py-20 px-[10vw] bg-secondary-bg/30">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold mb-4">Featured Projects</h2>
+                <p class="text-secondary-text">Showcasing my technical expertise through real-world applications</p>
+                <hr class="w-20 mx-auto border-highlight mt-4">
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- Tutor.AI Project -->
+                <div class="group bg-secondary-bg rounded-xl overflow-hidden border border-highlight/10 hover:border-highlight/30 transition-all duration-500">
+                    <div class="relative overflow-hidden">
+                        <img src="tutor-ai-screenshot.jpg" alt="Tutor.AI Project" class="w-full h-64 object-cover transform group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-bg-primary/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                            <div class="space-x-4">
+                                <a href="#" class="px-4 py-2 bg-highlight text-secondary-bg rounded-md hover:bg-highlight/90">View Demo</a>
+                                <a href="#" class="px-4 py-2 border border-highlight text-highlight rounded-md hover:bg-highlight/10">Source Code</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-highlight mb-3">Tutor.AI - Local LLM Teaching Assistant</h3>
+                        <p class="text-secondary-text mb-4">A specialized teaching assistant for rural areas using Local LLMs (Llama 3.2-3B). Features ONNX Runtime optimization and RAG implementation for higher accuracy.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-highlight/10 text-highlight rounded-full text-sm">Local LLMs</span>
+                            <span class="px-3 py-1 bg-highlight/10 text-highlight rounded-full text-sm">ONNX Runtime</span>
+                            <span class="px-3 py-1 bg-highlight/10 text-highlight rounded-full text-sm">RAG</span>
+                            <span class="px-3 py-1 bg-highlight/10 text-highlight rounded-full text-sm">Machine Learning</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Add more projects similarly -->
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-20 px-[10vw]">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold mb-4">Let's work Together</h2>
+                <p class="text-secondary-text">Do you have a project in mind? Contact me here</p>
+                <hr class="w-20 mx-auto border-highlight mt-4">
+            </div>
+            <div class="grid md:grid-cols-2 gap-12">
+                <div>
+                    <h3 class="text-2xl font-semibold mb-4">Find Me <i class="uil uil-corner-right-down"></i></h3>
+                    <p class="flex items-center gap-2 text-secondary-text">
+                        <i class="uil uil-envelope"></i>
+                        nirmalpatel284@gmail.com
+                    </p>
+                </div>
+                <div>
+                    <form class="space-y-6">
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <input type="text" id="name" placeholder="Your Name" class="w-full p-3 bg-secondary-bg rounded-md border border-highlight/20 focus:border-highlight outline-none">
+                            <input type="email" id="email" placeholder="Your Email" class="w-full p-3 bg-secondary-bg rounded-md border border-highlight/20 focus:border-highlight outline-none">
+                        </div>
+                        <textarea id="message" placeholder="Message" rows="5" class="w-full p-3 bg-secondary-bg rounded-md border border-highlight/20 focus:border-highlight outline-none"></textarea>
+                        <button onclick="sendMail()" class="px-6 py-3 bg-highlight text-secondary-bg rounded-md hover:bg-highlight/90 transition-colors">
+                            Send <i class="uil uil-message ml-2"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        
+
+        <!-- Footer -->
+        <footer class="bg-secondary-bg py-12">
+            <div class="px-[10vw] space-y-8">
+                <ul class="flex justify-center gap-8">
+                    <li><a href="#home" class="text-secondary-text hover:text-highlight transition-colors">Home</a></li>
+                    <li><a href="#about" class="text-secondary-text hover:text-highlight transition-colors">About</a></li>
+                    <li><a href="#projects" class="text-secondary-text hover:text-highlight transition-colors">Projects</a></li>
+                    <li><a href="#contact" class="text-secondary-text hover:text-highlight transition-colors">Contact</a></li>
+                </ul>
+                <div class="flex justify-center gap-6">
+                    <a href="https://www.instagram.com/18.nirmal_/" class="text-2xl text-secondary-text hover:text-highlight transition-colors">
                         <i class="uil uil-instagram"></i>
                     </a>
-                </div>
-
-                <div class="icon">
-                    <a href="https://www.linkedin.com/in/nirmal-boghara/">
-                        <i class="fa-brands fa-linkedin-in icon"></i>
+                    <a href="https://www.linkedin.com/in/nirmal-boghara/" class="text-2xl text-secondary-text hover:text-highlight transition-colors">
+                        <i class="fa-brands fa-linkedin-in"></i>
                     </a>
-                </div>
-
-                <div class="icon">
-                    <a href="https://github.com/nirmal141">
+                    <a href="https://github.com/nirmal141" class="text-2xl text-secondary-text hover:text-highlight transition-colors">
                         <i class="uil uil-github-alt"></i>
                     </a>
                 </div>
-
-            </div>
-            <div class="bottom-footer">
-                <p>Copyright &copy; <a href="#home">Nirmal Boghara</a> - All rights reserved</p>
+                <p class="text-center text-secondary-text">
+                    Copyright © <a href="#home" class="text-highlight">Nirmal Boghara</a> - All rights reserved
+                </p>
             </div>
         </footer>
-
-
     </div>
-
-
-
-
-
-
-
-
-
-
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.1.0/typed.umd.js"></script>
     <script src="script.js"></script>
+
+    <!-- Add this CSS to your styles -->
+    <style>
+    .tech-tag .tooltip {
+        @apply absolute bottom-full left-1/2 transform -translate-x-1/2 px-2 py-1 bg-secondary-bg text-highlight text-xs rounded opacity-0 transition-opacity duration-300 pointer-events-none mb-2;
+    }
+
+    .tech-tag:hover .tooltip {
+        @apply opacity-100;
+    }
+
+    .skill-bar-container:hover .progress-bar {
+        @apply scale-x-100;
+    }
+    </style>
 </body>
 </html>
