@@ -59,9 +59,426 @@
             emailjs.init("SfbY2GRHXou-VB3dn");
         })();
     </script>
+
+    <!-- Add these styles in the head section -->
+    <style>
+    /* Glow effects and advanced animations */
+    .glow-effect {
+        position: relative;
+    }
+    
+    .glow-effect::before {
+        content: '';
+        position: absolute;
+        inset: -1px;
+        background: linear-gradient(45deg, #64ffda, #0a192f, #64ffda);
+        filter: blur(15px);
+        opacity: 0;
+        transition: opacity 0.3s;
+        z-index: -1;
+        border-radius: inherit;
+    }
+    
+    .glow-effect:hover::before {
+        opacity: 0.5;
+    }
+
+    /* 3D Card Effect */
+    .card-3d {
+        transform-style: preserve-3d;
+        transition: transform 0.5s;
+    }
+
+    .card-3d:hover {
+        transform: rotateY(10deg) rotateX(5deg);
+    }
+
+    /* Floating Animation */
+    .floating {
+        animation: floating 3s ease-in-out infinite;
+    }
+
+    @keyframes floating {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-10px); }
+    }
+
+    /* Gradient Text Animation */
+    .gradient-text {
+        background: linear-gradient(90deg, #64ffda, #0a192f, #64ffda);
+        background-size: 200% auto;
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: gradient 3s linear infinite;
+    }
+
+    @keyframes gradient {
+        0% { background-position: 0% center; }
+        100% { background-position: 200% center; }
+    }
+
+    /* Particle Background */
+    #particles-js {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        z-index: -1;
+    }
+
+    /* Cyberpunk-inspired section headers */
+    .cyber-bar {
+        height: 2px;
+        width: 100%;
+        background: linear-gradient(90deg, transparent, #64ffda, transparent);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .cyber-bar::after {
+        content: '';
+        position: absolute;
+        width: 50%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, #fff, transparent);
+        animation: cyber-scan 2s linear infinite;
+    }
+
+    @keyframes cyber-scan {
+        0% { transform: translateX(-100%); }
+        100% { transform: translateX(200%); }
+    }
+
+    /* Glitch effect for section titles */
+    .glitch-container {
+        position: relative;
+    }
+
+    .glitch {
+        position: relative;
+        animation: glitch 5s infinite;
+    }
+
+    .glitch::before,
+    .glitch::after {
+        content: attr(data-text);
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        clip: rect(0, 900px, 0, 0);
+    }
+
+    .glitch::before {
+        left: 2px;
+        text-shadow: -1px 0 #64ffda;
+        animation: glitch-anim 3s infinite linear alternate-reverse;
+    }
+
+    .glitch::after {
+        left: -2px;
+        text-shadow: -1px 0 #0a192f;
+        animation: glitch-anim2 2s infinite linear alternate-reverse;
+    }
+
+    @keyframes glitch-anim {
+        0% { clip: rect(64px, 9999px, 66px, 0); }
+        5% { clip: rect(30px, 9999px, 36px, 0); }
+        10% { clip: rect(87px, 9999px, 95px, 0); }
+        /* Add more keyframes */
+    }
+
+    /* Perspective container for 3D effects */
+    .perspective-1000 {
+        perspective: 1000px;
+    }
+
+    /* Matrix-style background rain effect */
+    .matrix-bg {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: -1;
+        opacity: 0.1;
+    }
+
+    .matrix-character {
+        position: absolute;
+        color: #64ffda;
+        font-family: monospace;
+        font-size: 12px;
+        animation: matrix-fall linear infinite;
+    }
+
+    @keyframes matrix-fall {
+        0% { transform: translateY(-100%); opacity: 1; }
+        100% { transform: translateY(100vh); opacity: 0; }
+    }
+
+    /* Skill filter buttons with neon effect */
+    .skill-filter-btn {
+        padding: 0.5rem 1rem;
+        border: 1px solid #64ffda30;
+        border-radius: 0.5rem;
+        color: #64ffda;
+        transition: all 0.3s;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .skill-filter-btn::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(circle, #64ffda20 0%, transparent 50%);
+        transform: translate(-50%, -50%) scale(0);
+        transition: transform 0.5s;
+    }
+
+    .skill-filter-btn:hover::before {
+        transform: translate(-50%, -50%) scale(1);
+    }
+
+    .skill-filter-btn.active {
+        background: #64ffda20;
+        box-shadow: 0 0 15px #64ffda50;
+    }
+
+    /* Skill bars animation */
+    .skill-bar-container:hover .h-2 > div {
+        animation: skill-pulse 1s infinite;
+    }
+
+    @keyframes skill-pulse {
+        0%, 100% { transform: scaleX(1); }
+        50% { transform: scaleX(0.95); }
+    }
+
+    /* Experience timeline */
+    .experience-timeline {
+        position: relative;
+        perspective: 1000px;
+    }
+
+    .timeline-card {
+        transform-style: preserve-3d;
+        transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .timeline-card:hover {
+        transform: translateZ(20px) rotateX(10deg);
+    }
+
+    .timeline-connector {
+        position: absolute;
+        left: 50%;
+        width: 2px;
+        height: 100%;
+        background: linear-gradient(to bottom, 
+            transparent,
+            #64ffda,
+            #64ffda,
+            transparent
+        );
+        transform-origin: 50% 0;
+        animation: pulseConnector 2s infinite;
+    }
+
+    @keyframes pulseConnector {
+        0%, 100% { opacity: 0.3; }
+        50% { opacity: 1; }
+    }
+
+    /* Loading Animation Styles */
+    .geometric-bg {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(45deg, #0a192f 25%, transparent 25%),
+                    linear-gradient(-45deg, #0a192f 25%, transparent 25%),
+                    linear-gradient(45deg, transparent 75%, #0a192f 75%),
+                    linear-gradient(-45deg, transparent 75%, #0a192f 75%);
+        background-size: 20px 20px;
+        background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+        animation: bgMove 20s linear infinite;
+        opacity: 0.1;
+    }
+
+    .loading-rings {
+        position: absolute;
+        width: 100px;
+        height: 100px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .loading-rings::before,
+    .loading-rings::after {
+        content: '';
+        position: absolute;
+        inset: -8px;
+        border: 2px solid #64ffda;
+        border-radius: 50%;
+        animation: ringsRotate 2s linear infinite;
+    }
+
+    .loading-rings::after {
+        animation-delay: -1s;
+        opacity: 0.5;
+    }
+
+    .loading-logo {
+        animation: logoPulse 2s ease-in-out infinite;
+        background: linear-gradient(135deg, #64ffda, #0a192f);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    .loading-line {
+        height: 2px;
+        width: 100%;
+        background: #112240;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .loading-line::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 50%;
+        background: #64ffda;
+        animation: lineProgress 2s ease-in-out infinite;
+        box-shadow: 0 0 10px #64ffda;
+    }
+
+    .loading-particles {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        width: 100%;
+        height: 20px;
+        transform: translateY(-50%);
+    }
+
+    .loading-text {
+        font-size: 0.875rem;
+        letter-spacing: 0.5em;
+        text-transform: uppercase;
+        animation: textFade 2s ease-in-out infinite;
+    }
+
+    @keyframes bgMove {
+        0% { background-position: 0 0, 0 10px, 10px -10px, -10px 0px; }
+        100% { background-position: -20px -20px, -20px -10px, -10px -30px, -30px -20px; }
+    }
+
+    @keyframes ringsRotate {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+
+    @keyframes logoPulse {
+        0%, 100% { 
+            transform: scale(1);
+            filter: brightness(1);
+        }
+        50% { 
+            transform: scale(1.05);
+            filter: brightness(1.2);
+        }
+    }
+
+    @keyframes lineProgress {
+        0% { 
+            left: -50%;
+            filter: hue-rotate(0deg);
+        }
+        100% { 
+            left: 100%;
+            filter: hue-rotate(360deg);
+        }
+    }
+
+    @keyframes textFade {
+        0%, 100% { opacity: 0.5; }
+        50% { opacity: 1; }
+    }
+
+    /* Particle effect */
+    .loading-particles::before,
+    .loading-particles::after {
+        content: '';
+        position: absolute;
+        width: 4px;
+        height: 4px;
+        background: #64ffda;
+        border-radius: 50%;
+        animation: particleFloat 2s ease-in-out infinite;
+    }
+
+    .loading-particles::after {
+        animation-delay: -1s;
+    }
+
+    @keyframes particleFloat {
+        0% {
+            left: 0;
+            opacity: 0;
+            transform: translateY(0);
+        }
+        50% {
+            opacity: 1;
+            transform: translateY(-10px);
+        }
+        100% {
+            left: 100%;
+            opacity: 0;
+            transform: translateY(0);
+        }
+    }
+    </style>
 </head>
 
 <body class="bg-bg-primary font-poppins text-white">
+    <!-- Add this right after <body> opening tag -->
+    <div id="loader" class="fixed inset-0 z-[9999] bg-bg-primary">
+        <!-- Geometric Background -->
+        <div class="geometric-bg"></div>
+        
+        <!-- Center Content -->
+        <div class="absolute inset-0 flex items-center justify-center">
+            <div class="relative">
+                <!-- Animated Logo with Rings -->
+                
+                
+                <!-- Loading Bar -->
+                <div class="mt-12 w-48 relative">
+                    <div class="loading-line"></div>
+                    <div class="loading-particles"></div>
+                </div>
+                
+                <!-- Loading Text -->
+                <div class="mt-6 text-secondary-text text-center loading-text" data-text="LOADING">
+                    LOADING
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="particles-js"></div>
     <div class="relative">
         <!-- Navigation -->
         <nav class="fixed w-full h-20 bg-nav-bg backdrop-blur-md px-[10vw] transition-all duration-300 z-50 flex justify-between items-center border-b border-highlight/10">
@@ -91,10 +508,15 @@
         </nav>
 
         <!-- Hero Section -->
-        <section id="home" class="min-h-screen pt-20 px-[10vw] flex items-center">
-            <div class="grid md:grid-cols-2 gap-8 items-center">
+        <section id="home" class="min-h-screen pt-20 px-[10vw] flex items-center relative overflow-hidden">
+            <div class="absolute inset-0">
+                <div class="absolute inset-0 bg-gradient-to-b from-bg-primary/0 via-bg-primary/50 to-bg-primary"></div>
+                <div id="hero-particles" class="absolute inset-0"></div>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-8 items-center relative z-10">
                 <div class="space-y-6">
-                    <h1 class="font-cinzel text-6xl bg-gradient-to-r from-white to-highlight bg-clip-text text-transparent">
+                    <h1 class="font-cinzel text-6xl gradient-text">
                         Hi, I'm Nirmal!
                     </h1>
                     <div class="text-4xl font-semibold">
@@ -121,7 +543,8 @@
                     </div>
                 </div>
                 <div class="hidden md:block">
-                    <img src="./profilepicture.png" alt="Profile Picture" class="w-full max-w-md mx-auto rounded-lg">
+                    <img src="./profilepicture.png" alt="Profile Picture" 
+                           class="w-full max-w-md mx-auto rounded-lg floating glow-effect">
                 </div>
             </div>
         </section>
@@ -132,28 +555,16 @@
                 <h2 class="text-4xl font-bold mb-4">About Me</h2>
                 <hr class="w-20 mx-auto border-highlight">
             </div>
-            <div class="grid md:grid-cols-2 gap-12">
-                <div class="space-y-6">
-                    <p class="text-secondary-text leading-relaxed">
+            <div>
+                <div class="space-y-6 text-center">
+                    <p class="text-secondary-text leading-relaxed text-center">
                         With a passion for innovation and a diverse skill set spanning across software development, web development, and AI/ML engineering, I bring a unique blend of creativity and technical expertise to the table. My journey in technology has been driven by a relentless pursuit of excellence, coupled with a commitment to staying abreast of the latest advancements in the field.
                     </p>
-                    <a href="#contact" class="inline-block px-6 py-3 bg-highlight text-secondary-bg rounded-md hover:bg-highlight/90 transition-colors">
+                    <a href="#contact" class="text-center inline-block px-6 py-3 bg-highlight text-secondary-bg rounded-md hover:bg-highlight/90 transition-colors">
                         Hire Me
                     </a>
                 </div>
-                <div class="grid grid-cols-2 gap-4">
-                    <!-- Skills -->
-                    <div class="space-y-4">
-                        <h3 class="text-xl font-semibold text-highlight">Languages</h3>
-                        <div class="space-y-2">
-                            <div class="flex items-center gap-2">
-                                <span class="w-2 h-2 bg-highlight rounded-full"></span>
-                                <span>Java</span>
-                            </div>
-                            <!-- Add more skills -->
-                        </div>
-                    </div>
-                </div>
+                
             </div>
         </section>
 
@@ -191,7 +602,7 @@
             <!-- Interactive Skill Cards -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 perspective-container">
                 <!-- Languages Card -->
-                <div class="skill-card transform-3d" data-category="languages">
+                <div class="skill-card card-3d glow-effect" data-category="languages">
                     <div class="relative group bg-secondary-bg p-6 rounded-xl border border-highlight/10 hover:border-highlight/30 transition-all duration-500 transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-highlight/10">
                         <div class="absolute inset-0 bg-gradient-to-r from-highlight/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl"></div>
                         
@@ -221,6 +632,66 @@
                                 </div>
                             </div>
 
+                            <div class="skill-bar-container">
+                                <div class="flex justify-between mb-1">
+                                    <span class="text-sm text-secondary-text">SQL</span>
+                                    <span class="text-sm text-highlight">85%</span>
+                                </div>
+                                <div class="h-2 bg-secondary-bg/50 rounded-full overflow-hidden">
+                                    <div class="h-full w-[85%] bg-gradient-to-r from-highlight to-highlight/50"></div>
+                                </div>
+                            </div>
+
+                            <div class="skill-bar-container">
+                                <div class="flex justify-between mb-1">
+                                    <span class="text-sm text-secondary-text">JavaScript</span>
+                                    <span class="text-sm text-highlight">85%</span>
+                                </div>
+                                <div class="h-2 bg-secondary-bg/50 rounded-full overflow-hidden">
+                                    <div class="h-full w-[85%] bg-gradient-to-r from-highlight to-highlight/50"></div>
+                                </div>
+                            </div>
+
+                            <div class="skill-bar-container">
+                                <div class="flex justify-between mb-1">
+                                    <span class="text-sm text-secondary-text">HTML</span>
+                                    <span class="text-sm text-highlight">100%</span>
+                                </div>
+                                <div class="h-2 bg-secondary-bg/50 rounded-full overflow-hidden">
+                                    <div class="h-full w-[100%] bg-gradient-to-r from-highlight to-highlight/50"></div>
+                                </div>
+                            </div>
+
+                            <div class="skill-bar-container">
+                                <div class="flex justify-between mb-1">
+                                    <span class="text-sm text-secondary-text">Python</span>
+                                    <span class="text-sm text-highlight">90%</span>
+                                </div>
+                                <div class="h-2 bg-secondary-bg/50 rounded-full overflow-hidden">
+                                    <div class="h-full w-[90%] bg-gradient-to-r from-highlight to-highlight/50"></div>
+                                </div>
+                            </div>
+
+                            <div class="skill-bar-container">
+                                <div class="flex justify-between mb-1">
+                                    <span class="text-sm text-secondary-text">MySQL</span>
+                                    <span class="text-sm text-highlight">90%</span>
+                                </div>
+                                <div class="h-2 bg-secondary-bg/50 rounded-full overflow-hidden">
+                                    <div class="h-full w-[90%] bg-gradient-to-r from-highlight to-highlight/50"></div>
+                                </div>
+                            </div>
+
+                            <div class="skill-bar-container">
+                                <div class="flex justify-between mb-1">
+                                    <span class="text-sm text-secondary-text">PostgreSQL</span>
+                                    <span class="text-sm text-highlight">90%</span>
+                                </div>
+                                <div class="h-2 bg-secondary-bg/50 rounded-full overflow-hidden">
+                                    <div class="h-full w-[90%] bg-gradient-to-r from-highlight to-highlight/50"></div>
+                                </div>
+                            </div>
+
                             <!-- Add more languages with similar structure -->
                             <!-- SQL, JavaScript, HTML, R -->
                         </div>
@@ -241,10 +712,80 @@
                             <div class="skill-bar-container">
                                 <div class="flex justify-between mb-1">
                                     <span class="text-sm text-secondary-text">React.js</span>
-                                    <span class="text-sm text-highlight">90%</span>
+                                    <span class="text-sm text-highlight">92%</span>
                                 </div>
                                 <div class="h-2 bg-secondary-bg/50 rounded-full overflow-hidden">
-                                    <div class="h-full w-[90%] bg-gradient-to-r from-highlight to-highlight/50"></div>
+                                    <div class="h-full w-[92%] bg-gradient-to-r from-highlight to-highlight/50"></div>
+                                </div>
+                            </div>
+
+                            <div class="skill-bar-container">
+                                <div class="flex justify-between mb-1">
+                                    <span class="text-sm text-secondary-text">GoLang</span>
+                                    <span class="text-sm text-highlight">60%</span>
+                                </div>
+                                <div class="h-2 bg-secondary-bg/50 rounded-full overflow-hidden">
+                                    <div class="h-full w-[60%] bg-gradient-to-r from-highlight to-highlight/50"></div>
+                                </div>
+                            </div>
+
+                            <div class="skill-bar-container">
+                                <div class="flex justify-between mb-1">
+                                    <span class="text-sm text-secondary-text">Django</span>
+                                    <span class="text-sm text-highlight">80%</span>
+                                </div>
+                                <div class="h-2 bg-secondary-bg/50 rounded-full overflow-hidden">
+                                    <div class="h-full w-[80%] bg-gradient-to-r from-highlight to-highlight/50"></div>
+                                </div>
+                            </div>
+
+                            <div class="skill-bar-container">
+                                <div class="flex justify-between mb-1">
+                                    <span class="text-sm text-secondary-text">Node.js</span>
+                                    <span class="text-sm text-highlight">85%</span>
+                                </div>
+                                <div class="h-2 bg-secondary-bg/50 rounded-full overflow-hidden">
+                                    <div class="h-full w-[85%] bg-gradient-to-r from-highlight to-highlight/50"></div>
+                                </div>
+                            </div>
+
+                            <div class="skill-bar-container">
+                                <div class="flex justify-between mb-1">
+                                    <span class="text-sm text-secondary-text">TypeScript</span>
+                                    <span class="text-sm text-highlight">70%</span>
+                                </div>
+                                <div class="h-2 bg-secondary-bg/50 rounded-full overflow-hidden">
+                                    <div class="h-full w-[70%] bg-gradient-to-r from-highlight to-highlight/50"></div>
+                                </div>
+                            </div>
+
+                            <div class="skill-bar-container">
+                                <div class="flex justify-between mb-1">
+                                    <span class="text-sm text-secondary-text">Springboot</span>
+                                    <span class="text-sm text-highlight">80%</span>
+                                </div>
+                                <div class="h-2 bg-secondary-bg/50 rounded-full overflow-hidden">
+                                    <div class="h-full w-[80%] bg-gradient-to-r from-highlight to-highlight/50"></div>
+                                </div>
+                            </div>
+
+                            <div class="skill-bar-container">
+                                <div class="flex justify-between mb-1">
+                                    <span class="text-sm text-secondary-text">Three.js</span>
+                                    <span class="text-sm text-highlight">75%</span>
+                                </div>
+                                <div class="h-2 bg-secondary-bg/50 rounded-full overflow-hidden">
+                                    <div class="h-full w-[75%] bg-gradient-to-r from-highlight to-highlight/50"></div>
+                                </div>
+                            </div>
+
+                            <div class="skill-bar-container">
+                                <div class="flex justify-between mb-1">
+                                    <span class="text-sm text-secondary-text">Tailwind CSS</span>
+                                    <span class="text-sm text-highlight">95%</span>
+                                </div>
+                                <div class="h-2 bg-secondary-bg/50 rounded-full overflow-hidden">
+                                    <div class="h-full w-[95%] bg-gradient-to-r from-highlight to-highlight/50"></div>
                                 </div>
                             </div>
                             <!-- Add more frameworks with the same structure -->
@@ -272,6 +813,76 @@
                                     <div class="h-full w-[95%] bg-gradient-to-r from-highlight to-highlight/50"></div>
                                 </div>
                             </div>
+
+                            <div class="skill-bar-container">
+                                <div class="flex justify-between mb-1">
+                                    <span class="text-sm text-secondary-text">AWS</span>
+                                    <span class="text-sm text-highlight">90%</span>
+                                </div>
+                                <div class="h-2 bg-secondary-bg/50 rounded-full overflow-hidden">
+                                    <div class="h-full w-[90%] bg-gradient-to-r from-highlight to-highlight/50"></div>
+                                </div>
+                            </div>
+
+                            <div class="skill-bar-container">
+                                <div class="flex justify-between mb-1">
+                                    <span class="text-sm text-secondary-text">Docker</span>
+                                    <span class="text-sm text-highlight">80%</span>
+                                </div>
+                                <div class="h-2 bg-secondary-bg/50 rounded-full overflow-hidden">
+                                    <div class="h-full w-[80%] bg-gradient-to-r from-highlight to-highlight/50"></div>
+                                </div>
+                            </div>
+
+                            <div class="skill-bar-container">
+                                <div class="flex justify-between mb-1">
+                                    <span class="text-sm text-secondary-text">Kubernetes</span>
+                                    <span class="text-sm text-highlight">75%</span>
+                                </div>
+                                <div class="h-2 bg-secondary-bg/50 rounded-full overflow-hidden">
+                                    <div class="h-full w-[75%] bg-gradient-to-r from-highlight to-highlight/50"></div>
+                                </div>
+                            </div>
+
+                            <div class="skill-bar-container">
+                                <div class="flex justify-between mb-1">
+                                    <span class="text-sm text-secondary-text">Jira</span>
+                                    <span class="text-sm text-highlight">80%</span>
+                                </div>
+                                <div class="h-2 bg-secondary-bg/50 rounded-full overflow-hidden">
+                                    <div class="h-full w-[80%] bg-gradient-to-r from-highlight to-highlight/50"></div>
+                                </div>
+                            </div>
+
+                            <div class="skill-bar-container">
+                                <div class="flex justify-between mb-1">
+                                    <span class="text-sm text-secondary-text">MongoDB</span>
+                                    <span class="text-sm text-highlight">95%</span>
+                                </div>
+                                <div class="h-2 bg-secondary-bg/50 rounded-full overflow-hidden">
+                                    <div class="h-full w-[95%] bg-gradient-to-r from-highlight to-highlight/50"></div>
+                                </div>
+                            </div>
+
+                            <div class="skill-bar-container">
+                                <div class="flex justify-between mb-1">
+                                    <span class="text-sm text-secondary-text">Matlab</span>
+                                    <span class="text-sm text-highlight">70%</span>
+                                </div>
+                                <div class="h-2 bg-secondary-bg/50 rounded-full overflow-hidden">
+                                    <div class="h-full w-[70%] bg-gradient-to-r from-highlight to-highlight/50"></div>
+                                </div>
+                            </div>
+
+                            <div class="skill-bar-container">
+                                <div class="flex justify-between mb-1">
+                                    <span class="text-sm text-secondary-text">VS Code</span>
+                                    <span class="text-sm text-highlight">100%</span>
+                                </div>
+                                <div class="h-2 bg-secondary-bg/50 rounded-full overflow-hidden">
+                                    <div class="h-full w-[100%] bg-gradient-to-r from-highlight to-highlight/50"></div>
+                                </div>
+                            </div>
                             <!-- Add more tools with the same structure -->
                         </div>
                     </div>
@@ -297,7 +908,149 @@
                                     <div class="h-full w-[85%] bg-gradient-to-r from-highlight to-highlight/50"></div>
                                 </div>
                             </div>
+
+                            <div class="skill-bar-container">
+                                <div class="flex justify-between mb-1">
+                                    <span class="text-sm text-secondary-text">PyTorch</span>
+                                    <span class="text-sm text-highlight">80%</span>
+                                </div>
+                                <div class="h-2 bg-secondary-bg/50 rounded-full overflow-hidden">
+                                    <div class="h-full w-[80%] bg-gradient-to-r from-highlight to-highlight/50"></div>
+                                </div>
+                            </div>
+
+                            <div class="skill-bar-container">
+                                <div class="flex justify-between mb-1">
+                                    <span class="text-sm text-secondary-text">Keras</span>
+                                    <span class="text-sm text-highlight">75%</span>
+                                </div>
+                                <div class="h-2 bg-secondary-bg/50 rounded-full overflow-hidden">
+                                    <div class="h-full w-[75%] bg-gradient-to-r from-highlight to-highlight/50"></div>
+                                </div>
+                            </div>
+
+                            <div class="skill-bar-container">
+                                <div class="flex justify-between mb-1">
+                                    <span class="text-sm text-secondary-text">NumPy</span>
+                                    <span class="text-sm text-highlight">90%</span>
+                                </div>
+                                <div class="h-2 bg-secondary-bg/50 rounded-full overflow-hidden">
+                                    <div class="h-full w-[90%] bg-gradient-to-r from-highlight to-highlight/50"></div>
+                                </div>
+                            </div>
+
+                            <div class="skill-bar-container">
+                                <div class="flex justify-between mb-1">
+                                    <span class="text-sm text-secondary-text">Pandas</span>
+                                    <span class="text-sm text-highlight">85%</span>
+                                </div>
+                                <div class="h-2 bg-secondary-bg/50 rounded-full overflow-hidden">
+                                    <div class="h-full w-[85%] bg-gradient-to-r from-highlight to-highlight/50"></div>
+                                </div>
+                            </div>
+
+                            <div class="skill-bar-container">
+                                <div class="flex justify-between mb-1">
+                                    <span class="text-sm text-secondary-text">Language Models</span>
+                                    <span class="text-sm text-highlight">75%</span>
+                                </div>
+                                <div class="h-2 bg-secondary-bg/50 rounded-full overflow-hidden">
+                                    <div class="h-full w-[75%] bg-gradient-to-r from-highlight to-highlight/50"></div>
+                                </div>
+                            </div>
+
+
                             <!-- Add more ML/AI skills with the same structure -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Education Section -->
+        <section id="education" class="py-20 px-[10vw]">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold mb-4">Education</h2>
+                <p class="text-secondary-text">Academic Background</p>
+                <hr class="w-20 mx-auto border-highlight mt-4">
+            </div>
+
+            <div class="space-y-12">
+                <!-- NYU -->
+                <div class="group relative bg-secondary-bg p-8 rounded-xl border border-highlight/10 hover:border-highlight/30 transition-all duration-500 transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-highlight/10">
+                    <div class="absolute top-0 right-0 mt-6 mr-6">
+                        <span class="text-highlight font-semibold">Expected May 2026</span>
+                    </div>
+                    
+                    <div class="flex items-center gap-6 mb-6">
+                        <div class="w-16 h-16 rounded-full bg-white p-2 flex items-center justify-center">
+                            <img src="./NYU.webp" alt="NYU Logo" class="w-10 h-10 object-contain">
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold text-white">New York University</h3>
+                            <p class="text-highlight font-semibold">MS in Computer Science</p>
+                        </div>
+                    </div>
+
+                    <div class="pl-22">
+                        <h4 class="text-lg font-semibold mb-3 text-secondary-text">Key Coursework</h4>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                            <div class="flex items-center gap-2">
+                                <span class="w-2 h-2 bg-highlight rounded-full"></span>
+                                <span class="text-secondary-text">Design and Analysis of Algorithms</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <span class="w-2 h-2 bg-highlight rounded-full"></span>
+                                <span class="text-secondary-text">Information Security and Privacy</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <span class="w-2 h-2 bg-highlight rounded-full"></span>
+                                <span class="text-secondary-text">Principles of Database Systems</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- University of Mumbai -->
+                <div class="group relative bg-secondary-bg p-8 rounded-xl border border-highlight/10 hover:border-highlight/30 transition-all duration-500 transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-highlight/10">
+                    <div class="absolute top-0 right-0 mt-6 mr-6">
+                        <span class="text-highlight font-semibold">Jun 2024</span>
+                    </div>
+                    
+                    <div class="flex items-center gap-6 mb-6">
+                        <div class="w-16 h-16 rounded-full bg-white p-2 flex items-center justify-center">
+                            <img src="./UM.svg" alt="University of Mumbai Logo" class="w-12 h-12 object-contain">
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold text-white">University of Mumbai</h3>
+                            <p class="text-highlight font-semibold">BE in Computer Engineering</p>
+                            <p class="text-secondary-text">GPA: 8.95/10</p>
+                        </div>
+                    </div>
+
+                    <div class="pl-22">
+                        <h4 class="text-lg font-semibold mb-3 text-secondary-text">Key Coursework</h4>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                            <div class="flex items-center gap-2">
+                                <span class="w-2 h-2 bg-highlight rounded-full"></span>
+                                <span class="text-secondary-text">Operating Systems</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <span class="w-2 h-2 bg-highlight rounded-full"></span>
+                                <span class="text-secondary-text">Machine Learning</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <span class="w-2 h-2 bg-highlight rounded-full"></span>
+                                <span class="text-secondary-text">Computer Networks</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <span class="w-2 h-2 bg-highlight rounded-full"></span>
+                                <span class="text-secondary-text">Applied Cryptography</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <span class="w-2 h-2 bg-highlight rounded-full"></span>
+                                <span class="text-secondary-text">Data Structures</span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -333,7 +1086,7 @@
                         <!-- Content -->
                         <div class="w-full md:w-5/12 bg-secondary-bg p-6 rounded-xl border border-highlight/10 hover:border-highlight/30 transition-all duration-300 transform hover:-translate-y-2 hover:shadow-xl hover:shadow-highlight/5">
                             <div class="flex items-center gap-4 mb-4">
-                                <img src="bitnine-logo.png" alt="Bitnine" class="w-12 h-12 rounded-full bg-white p-2">
+                                <img src="./bitnine_logo.jpeg" alt="Bitnine" class="w-12 h-12 rounded-full bg-white p-2">
                                 <div>
                                     <h3 class="text-xl font-semibold text-white">Software Engineering Intern</h3>
                                     <p class="text-highlight">Bitnine</p>
@@ -373,7 +1126,7 @@
 
                         <div class="w-full md:w-5/12 bg-secondary-bg p-6 rounded-xl border border-highlight/10 hover:border-highlight/30 transition-all duration-300 transform hover:-translate-y-2 hover:shadow-xl hover:shadow-highlight/5">
                             <div class="flex items-center gap-4 mb-4">
-                                <img src="soulible-logo.png" alt="Soulible Digital" class="w-12 h-12 rounded-full bg-white p-2">
+                                <img src="./soulible_logo_light.png" alt="Soulible Digital" class="w-12 h-12 rounded-full bg-white p-2">
                                 <div>
                                     <h3 class="text-xl font-semibold text-white">Artificial Intelligence Intern</h3>
                                     <p class="text-highlight">Soulible Digital</p>
@@ -398,6 +1151,94 @@
                         </div>
                     </div>
 
+                    <!-- Feat Systems -->
+                    <div class="group relative flex flex-col md:flex-row items-center md:justify-between md:odd:flex-row-reverse">
+                        <!-- Timeline Dot -->
+                        <div class="absolute left-0 md:left-1/2 w-4 h-4 bg-highlight rounded-full transform -translate-x-1/2 transition-transform duration-300 group-hover:scale-150"></div>
+                        
+                        <!-- Date -->
+                        <div class="w-full md:w-5/12 mb-8 md:mb-0 text-right md:group-odd:text-left">
+                            <span class="text-highlight font-semibold">May 2023 - Aug 2023</span>
+                            <p class="text-secondary-text">Maharashtra, India</p>
+                        </div>
+
+                        <!-- Content -->
+                        <div class="w-full md:w-5/12 bg-secondary-bg p-6 rounded-xl border border-highlight/10 hover:border-highlight/30 transition-all duration-300 transform hover:-translate-y-2 hover:shadow-xl hover:shadow-highlight/5">
+                            <div class="flex items-center gap-4 mb-4">
+                                <img src="./Feat Systems.jpeg" alt="Bitnine" class="w-12 h-12 rounded-full bg-white p-2">
+                                <div>
+                                    <h3 class="text-xl font-semibold text-white">Software Development Engineer Intern</h3>
+                                    <p class="text-highlight">Feat Systems</p>
+                                </div>
+                            </div>
+                            <ul class="space-y-3 text-secondary-text">
+                                <li class="flex items-start gap-2">
+                                    <span class="text-highlight mt-1.5">▹</span>
+                                    <span>Resolved software defects and enhanced product functionality through Java and Spring Boot optimizations, resulting in a
+                                        15% reduction in customer complaints.</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <span class="text-highlight mt-1.5">▹</span>
+                                    <span>Documented the entire development process, utilizing GitHub for version control and Jira for task management, ensuring
+                                        up-to-date and easily accessible resources.</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <span class="text-highlight mt-1.5">▹</span>
+                                    <span>Streamlined access to critical information using MySQL, resulting in a notable 30% acceleration in new team member
+                                        onboarding processes.</span>
+                                </li>
+                            </ul>
+                            <div class="flex flex-wrap gap-2 mt-4">
+                                <span class="px-2 py-1 bg-highlight/10 text-highlight rounded-full text-xs">Python</span>
+                                <span class="px-2 py-1 bg-highlight/10 text-highlight rounded-full text-xs">Springboot</span>
+                                <span class="px-2 py-1 bg-highlight/10 text-highlight rounded-full text-xs">MySQL</span>
+                                <span class="px-2 py-1 bg-highlight/10 text-highlight rounded-full text-xs">RPA</span>
+                                <span class="px-2 py-1 bg-highlight/10 text-highlight rounded-full text-xs">Automation</span>
+                                <span class="px-2 py-1 bg-highlight/10 text-highlight rounded-full text-xs">Java</span>
+                                <span class="px-2 py-1 bg-highlight/10 text-highlight rounded-full text-xs">C#</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="group relative flex flex-col md:flex-row items-center md:justify-between">
+                        <div class="absolute left-0 md:left-1/2 w-4 h-4 bg-highlight rounded-full transform -translate-x-1/2 transition-transform duration-300 group-hover:scale-150"></div>
+                        
+                        <div class="w-full md:w-5/12 mb-8 md:mb-0 text-right">
+                            <span class="text-highlight font-semibold">May 2022 - July 2022</span>
+                            <p class="text-secondary-text">Maharashtra, India</p>
+                        </div>
+
+                        <div class="w-full md:w-5/12 bg-secondary-bg p-6 rounded-xl border border-highlight/10 hover:border-highlight/30 transition-all duration-300 transform hover:-translate-y-2 hover:shadow-xl hover:shadow-highlight/5">
+                            <div class="flex items-center gap-4 mb-4">
+                                <img src="./Goldenmace.jpeg" alt="Soulible Digital" class="w-12 h-12 rounded-full bg-white p-2">
+                                <div>
+                                    <h3 class="text-xl font-semibold text-white">Full Stack Developer Intern</h3>
+                                    <p class="text-highlight">Goldenmace IT Solutions</p>
+                                </div>
+                            </div>
+                            <ul class="space-y-3 text-secondary-text">
+                                <li class="flex items-start gap-2">
+                                    <span class="text-highlight mt-1.5">▹</span>
+                                    <span>Led the development of a business dashboard using React.js, Node.js, and Angular.js, improving client satisfaction by 20%
+                                        through an intuitive user interface.</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <span class="text-highlight mt-1.5">▹</span>
+                                    <span>Implemented TypeScript and Svelte for code optimization and caching mechanisms, boosting dashboard performance by
+                                        30%. Integrated PostgreSQL and MongoDB for data storage, ensuring fast and efficient data retrieval.</span>
+                                </li>
+                            </ul>
+                            <div class="flex flex-wrap gap-2 mt-4">
+                                <span class="px-2 py-1 bg-highlight/10 text-highlight rounded-full text-xs">TypeScript</span>
+                                <span class="px-2 py-1 bg-highlight/10 text-highlight rounded-full text-xs">Tailwind CSS</span>
+                                <span class="px-2 py-1 bg-highlight/10 text-highlight rounded-full text-xs">PostgreSQL</span>
+                                <span class="px-2 py-1 bg-highlight/10 text-highlight rounded-full text-xs">React.js</span>
+                                <span class="px-2 py-1 bg-highlight/10 text-highlight rounded-full text-xs">Node.js</span>
+                                <span class="px-2 py-1 bg-highlight/10 text-highlight rounded-full text-xs">Angular.js</span>
+                            </div>
+                        </div>
+                    </div>
+
                     <!-- Add Feat Systems and Goldenmace IT Solutions similarly -->
                 </div>
             </div>
@@ -411,31 +1252,190 @@
                 <hr class="w-20 mx-auto border-highlight mt-4">
             </div>
 
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                <!-- Tutor.AI Project -->
-                <div class="group bg-secondary-bg rounded-xl overflow-hidden border border-highlight/10 hover:border-highlight/30 transition-all duration-500">
-                    <div class="relative overflow-hidden">
-                        <img src="tutor-ai-screenshot.jpg" alt="Tutor.AI Project" class="w-full h-64 object-cover transform group-hover:scale-105 transition-transform duration-500">
-                        <div class="absolute inset-0 bg-bg-primary/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                            <div class="space-x-4">
-                                <a href="#" class="px-4 py-2 bg-highlight text-secondary-bg rounded-md hover:bg-highlight/90">View Demo</a>
-                                <a href="#" class="px-4 py-2 border border-highlight text-highlight rounded-md hover:bg-highlight/10">Source Code</a>
+            <div class="space-y-24"> <!-- Increased spacing between projects -->
+                <!-- Project 1 -->
+                <div class="flex flex-col lg:flex-row gap-8 items-center">
+                    <!-- Project Card -->
+                    <div class="w-full lg:w-2/3 group bg-secondary-bg rounded-xl overflow-hidden border border-highlight/10 hover:border-highlight/30 transition-all duration-500">
+                        <div class="relative overflow-hidden">
+                            <img src="./TUTOR-AI.png" alt="Tutor.AI Project" class="w-full h-64 object-contain transform group-hover:scale-105 transition-transform duration-500">
+                            <div class="absolute inset-0 bg-bg-primary/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                                <div class="space-x-4">
+                                    <a href="https://tutorllm.streamlit.app/" class="px-4 py-2 bg-highlight text-secondary-bg rounded-md hover:bg-highlight/90">View Demo</a>
+                                    <a href="https://github.com/nirmal141/tutor-ai" class="px-4 py-2 border border-highlight text-highlight rounded-md hover:bg-highlight/10">Source Code</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold text-highlight mb-3">Tutor.AI - Local LLM Teaching Assistant</h3>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-3 py-1 bg-highlight/10 text-highlight rounded-full text-sm">Local LLMs</span>
+                                <span class="px-3 py-1 bg-highlight/10 text-highlight rounded-full text-sm">ONNX Runtime</span>
+                                <span class="px-3 py-1 bg-highlight/10 text-highlight rounded-full text-sm">RAG</span>
+                                <span class="px-3 py-1 bg-highlight/10 text-highlight rounded-full text-sm">Machine Learning</span>
                             </div>
                         </div>
                     </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-semibold text-highlight mb-3">Tutor.AI - Local LLM Teaching Assistant</h3>
-                        <p class="text-secondary-text mb-4">A specialized teaching assistant for rural areas using Local LLMs (Llama 3.2-3B). Features ONNX Runtime optimization and RAG implementation for higher accuracy.</p>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="px-3 py-1 bg-highlight/10 text-highlight rounded-full text-sm">Local LLMs</span>
-                            <span class="px-3 py-1 bg-highlight/10 text-highlight rounded-full text-sm">ONNX Runtime</span>
-                            <span class="px-3 py-1 bg-highlight/10 text-highlight rounded-full text-sm">RAG</span>
-                            <span class="px-3 py-1 bg-highlight/10 text-highlight rounded-full text-sm">Machine Learning</span>
+
+                    <!-- Project Description -->
+                    <div class="w-full lg:w-1/3 space-y-4">
+                        <div class="text-secondary-text leading-relaxed">
+                            <p class="mb-4">A specialized teaching assistant for rural areas using Local LLMs (Llama 3.2-3B). Features ONNX Runtime optimization and RAG implementation for higher accuracy.</p>
+                            <ul class="space-y-2">
+                                <li class="flex items-start gap-2">
+                                    <span class="text-highlight mt-1.5">▹</span>
+                                    <span>Implemented ONNX Runtime optimization reducing inference time by 40%</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <span class="text-highlight mt-1.5">▹</span>
+                                    <span>Developed custom RAG pipeline improving answer accuracy by 25%</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <span class="text-highlight mt-1.5">▹</span>
+                                    <span>Optimized for low-resource environments with 60% reduced memory usage</span>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                 </div>
 
-                <!-- Add more projects similarly -->
+                <div class="flex flex-col lg:flex-row gap-8 items-center">
+                    <!-- Project Card -->
+                    <div class="w-full lg:w-2/3 group bg-secondary-bg rounded-xl overflow-hidden border border-highlight/10 hover:border-highlight/30 transition-all duration-500">
+                        <div class="relative overflow-hidden">
+                            <img src="./FITFARM.png" alt="Tutor.AI Project" class="w-full h-64 object-contain transform group-hover:scale-105 transition-transform duration-500">
+                            <div class="absolute inset-0 bg-bg-primary/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                                <div class="space-x-4">
+                                    
+                                    <a href="https://github.com/nirmal141/FitFarm-main" class="px-4 py-2 border border-highlight text-highlight rounded-md hover:bg-highlight/10">Source Code</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold text-highlight mb-3">FitFarm - Smart Agriculture System</h3>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-3 py-1 bg-highlight/10 text-highlight rounded-full text-sm">Python</span>
+                                <span class="px-3 py-1 bg-highlight/10 text-highlight rounded-full text-sm">IoT</span>
+                                <span class="px-3 py-1 bg-highlight/10 text-highlight rounded-full text-sm">Python</span>
+                                <span class="px-3 py-1 bg-highlight/10 text-highlight rounded-full text-sm">Machine Learning</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project Description -->
+                    <div class="w-full lg:w-1/3 space-y-4">
+                        <div class="text-secondary-text leading-relaxed">
+                            <p class="mb-4">Designed supervised ML algorithms (DT, SVM, RF, and NB) using Python, TensorFlow, and Scikit-learn to predict the most
+                                suitable crops according to soil conditions with 93% accuracy. Published a research paper in the IJRASET.</p>
+                            <ul class="space-y-2">
+                                <li class="flex items-start gap-2">
+                                    <span class="text-highlight mt-1.5">▹</span>
+                                    <span>Implemented ONNX Runtime optimization reducing inference time by 40%</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <span class="text-highlight mt-1.5">▹</span>
+                                    <span>Developed custom RAG pipeline improving answer accuracy by 25%</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <span class="text-highlight mt-1.5">▹</span>
+                                    <span>Optimized for low-resource environments with 60% reduced memory usage</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex flex-col lg:flex-row gap-8 items-center">
+                    <!-- Project Card -->
+                    <div class="w-full lg:w-2/3 group bg-secondary-bg rounded-xl overflow-hidden border border-highlight/10 hover:border-highlight/30 transition-all duration-500">
+                        <div class="relative overflow-hidden">
+                            <img src="./ZINZRAA.png" alt="Tutor.AI Project" class="w-full h-64 object-contain transform group-hover:scale-105 transition-transform duration-500">
+                            <div class="absolute inset-0 bg-bg-primary/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                                <div class="space-x-4">
+                                    <a href="https://asynk-zinzraa-2023828.netlify.app/#/" class="px-4 py-2 bg-highlight text-secondary-bg rounded-md hover:bg-highlight/90">View Demo</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold text-highlight mb-3">Zinzraa - Top E-commerce on AJIO</h3>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-3 py-1 bg-highlight/10 text-highlight rounded-full text-sm">ExpressJS</span>
+                                <span class="px-3 py-1 bg-highlight/10 text-highlight rounded-full text-sm">Vite + React.js</span>
+                                <span class="px-3 py-1 bg-highlight/10 text-highlight rounded-full text-sm">Node.js</span>
+                                <span class="px-3 py-1 bg-highlight/10 text-highlight rounded-full text-sm">MongoDB</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project Description -->
+                    <div class="w-full lg:w-1/3 space-y-4">
+                        <div class="text-secondary-text leading-relaxed">
+                            <p class="mb-4"> Spearheaded a user-friendly interface for the shopping website, incorporating MERN Stack, leading to a 20% increase in user
+                                engagement and a 15% decrease in bounce rate. Deployed CRM and SEO tools to optimize web content and drive organic
+                                traffic, resulting in a 30% increase in conversion rates and boost in online sales revenue.</p>
+                            <ul class="space-y-2">
+                                <li class="flex items-start gap-2">
+                                    <span class="text-highlight mt-1.5">▹</span>
+                                    <span>Implemented ONNX Runtime optimization reducing inference time by 40%</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <span class="text-highlight mt-1.5">▹</span>
+                                    <span>Developed custom RAG pipeline improving answer accuracy by 25%</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <span class="text-highlight mt-1.5">▹</span>
+                                    <span>Optimized for low-resource environments with 60% reduced memory usage</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex flex-col lg:flex-row gap-8 items-center">
+                    <!-- Project Card -->
+                    <div class="w-full lg:w-2/3 group bg-secondary-bg rounded-xl overflow-hidden border border-highlight/10 hover:border-highlight/30 transition-all duration-500">
+                        <div class="relative overflow-hidden">
+                            <img src="./FITTIFY.png" alt="Tutor.AI Project" class="w-full h-64 object-contain transform group-hover:scale-105 transition-transform duration-500">
+                            <div class="absolute inset-0 bg-bg-primary/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                                <div class="space-x-4">
+                                    <a href="https://github.com/nirmal141/Fittify---The-Health-Portfolio" class="px-4 py-2 border border-highlight text-highlight rounded-md hover:bg-highlight/10">Source Code</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold text-highlight mb-3">Fittify - One Stop Health Platform</h3>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-3 py-1 bg-highlight/10 text-highlight rounded-full text-sm">MERN</span>
+                                
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project Description -->
+                    <div class="w-full lg:w-1/3 space-y-4">
+                        <div class="text-secondary-text leading-relaxed">
+                            <p class="mb-4">A specialized teaching assistant for rural areas using Local LLMs (Llama 3.2-3B). Features ONNX Runtime optimization and RAG implementation for higher accuracy.</p>
+                            <ul class="space-y-2">
+                                <li class="flex items-start gap-2">
+                                    <span class="text-highlight mt-1.5">▹</span>
+                                    <span>Implemented ONNX Runtime optimization reducing inference time by 40%</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <span class="text-highlight mt-1.5">▹</span>
+                                    <span>Developed custom RAG pipeline improving answer accuracy by 25%</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <span class="text-highlight mt-1.5">▹</span>
+                                    <span>Optimized for low-resource environments with 60% reduced memory usage</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex flex-col lg:flex-row-reverse gap-8 items-center">
+                    <!-- Project card and description structure same as above -->
+                </div>
             </div>
         </section>
 
@@ -503,17 +1503,295 @@
 
     <!-- Add this CSS to your styles -->
     <style>
-    .tech-tag .tooltip {
-        @apply absolute bottom-full left-1/2 transform -translate-x-1/2 px-2 py-1 bg-secondary-bg text-highlight text-xs rounded opacity-0 transition-opacity duration-300 pointer-events-none mb-2;
+    .education-card {
+        opacity: 0;
+        transform: translateY(20px);
     }
 
-    .tech-tag:hover .tooltip {
-        @apply opacity-100;
+    .education-card.animate {
+        animation: slideUpFade 0.6s ease forwards;
     }
 
-    .skill-bar-container:hover .progress-bar {
-        @apply scale-x-100;
+    @keyframes slideUpFade {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* Add hover effect for course items */
+    .education-card .course-item {
+        transition: all 0.3s ease;
+    }
+
+    .education-card .course-item:hover {
+        transform: translateX(10px);
+        color: var(--highlight);
     }
     </style>
+
+    <!-- Add this to your existing JavaScript -->
+    <script>
+    // Intersection Observer for education cards
+    const observeEducation = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('animate');
+            }
+        });
+    }, { threshold: 0.1 });
+
+    // Observe all education cards
+    document.querySelectorAll('.education-card').forEach(card => {
+        observeEducation.observe(card);
+    });
+    </script>
+
+    <!-- Add this to your existing JavaScript -->
+    <script>
+    // Particle.js configuration
+    particlesJS('particles-js',
+        {
+            "particles": {
+                "number": {
+                    "value": 80,
+                    "density": {
+                        "enable": true,
+                        "value_area": 800
+                    }
+                },
+                "color": {
+                    "value": "#64ffda"
+                },
+                "shape": {
+                    "type": "circle"
+                },
+                "opacity": {
+                    "value": 0.2,
+                    "random": true
+                },
+                "size": {
+                    "value": 3,
+                    "random": true
+                },
+                "line_linked": {
+                    "enable": true,
+                    "distance": 150,
+                    "color": "#64ffda",
+                    "opacity": 0.1,
+                    "width": 1
+                },
+                "move": {
+                    "enable": true,
+                    "speed": 2,
+                    "direction": "none",
+                    "random": true,
+                    "straight": false,
+                    "out_mode": "out",
+                    "bounce": false
+                }
+            },
+            "interactivity": {
+                "detect_on": "canvas",
+                "events": {
+                    "onhover": {
+                        "enable": true,
+                        "mode": "grab"
+                    },
+                    "onclick": {
+                        "enable": true,
+                        "mode": "push"
+                    },
+                    "resize": true
+                }
+            },
+            "retina_detect": true
+        }
+    );
+
+    // Smooth scroll with GSAP
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            gsap.to(window, {
+                duration: 1,
+                scrollTo: target,
+                ease: "power2.inOut"
+            });
+        });
+    });
+
+    // GSAP Scroll Animations
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Animate skill cards
+    gsap.utils.toArray('.skill-card').forEach(card => {
+        gsap.from(card, {
+            scrollTrigger: {
+                trigger: card,
+                start: "top bottom-=100",
+                toggleActions: "play none none reverse"
+            },
+            y: 50,
+            opacity: 0,
+            duration: 1,
+            ease: "power3.out"
+        });
+    });
+
+    // 3D Tilt Effect
+    VanillaTilt.init(document.querySelectorAll(".card-3d"), {
+        max: 15,
+        speed: 400,
+        glare: true,
+        "max-glare": 0.2
+    });
+    </script>
+
+    <!-- Add these scripts before closing body tag -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.0/vanilla-tilt.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
+
+    <!-- Add this script for skills filtering -->
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const skillCards = document.querySelectorAll('.skill-card');
+        const filterBtns = document.querySelectorAll('.skill-filter-btn');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove active class from all buttons
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                const category = btn.getAttribute('data-filter');
+
+                // Animate cards
+                skillCards.forEach(card => {
+                    const cardCategory = card.getAttribute('data-category');
+                    
+                    if (category === 'all' || category === cardCategory) {
+                        // Show card with animation
+                        gsap.to(card, {
+                            scale: 1,
+                            opacity: 1,
+                            duration: 0.4,
+                            display: 'block',
+                            ease: "back.out(1.2)"
+                        });
+                    } else {
+                        // Hide card with animation
+                        gsap.to(card, {
+                            scale: 0.8,
+                            opacity: 0,
+                            duration: 0.4,
+                            display: 'none',
+                            ease: "back.in(1.2)"
+                        });
+                    }
+                });
+            });
+        });
+    });
+    </script>
+
+    <!-- Add this script right before closing </body> tag -->
+    <script>
+    // Loading Animation
+    document.addEventListener('DOMContentLoaded', () => {
+        // Create matrix rain effect
+        const matrixContainer = document.createElement('div');
+        matrixContainer.className = 'matrix-loader';
+        document.getElementById('loader').appendChild(matrixContainer);
+
+        // Generate matrix characters
+        for (let i = 0; i < 50; i++) {
+            const character = document.createElement('div');
+            character.className = 'matrix-character';
+            character.style.left = `${Math.random() * 100}%`;
+            character.style.animationDuration = `${Math.random() * 2 + 1}s`;
+            character.style.animationDelay = `${Math.random() * 2}s`;
+            character.textContent = String.fromCharCode(0x30A0 + Math.random() * 96);
+            matrixContainer.appendChild(character);
+        }
+
+        // Hide loader after animation
+        setTimeout(() => {
+            const loader = document.getElementById('loader');
+            loader.style.opacity = '0';
+            loader.style.transition = 'opacity 0.5s ease-out';
+            setTimeout(() => {
+                loader.style.display = 'none';
+            }, 500);
+        }, 3000); // Adjust timing as needed
+    });
+
+    // Update loading text
+    const loadingTexts = [
+        'INITIALIZING',
+        'LOADING MODULES',
+        'ESTABLISHING CONNECTION',
+        'RENDERING INTERFACE'
+    ];
+
+    let textIndex = 0;
+    const glitchText = document.querySelector('.glitch-text');
+
+    setInterval(() => {
+        glitchText.setAttribute('data-text', loadingTexts[textIndex]);
+        glitchText.textContent = loadingTexts[textIndex];
+        textIndex = (textIndex + 1) % loadingTexts.length;
+    }, 800);
+    </script>
+
+    <!-- Update the script before closing </body> tag -->
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // Create particles
+        const particlesContainer = document.querySelector('.loading-particles');
+        for (let i = 0; i < 10; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = `${Math.random() * 100}%`;
+            particle.style.animationDelay = `${Math.random() * 2}s`;
+            particlesContainer.appendChild(particle);
+        }
+
+        // Loading text animation
+        const loadingTexts = [
+            'LOADING',
+            'INITIALIZING',
+            'PREPARING',
+            'LAUNCHING'
+        ];
+
+        const loadingElement = document.querySelector('.loading-text');
+        let textIndex = 0;
+
+        setInterval(() => {
+            loadingElement.style.opacity = '0';
+            setTimeout(() => {
+                loadingElement.textContent = loadingTexts[textIndex];
+                loadingElement.style.opacity = '1';
+                textIndex = (textIndex + 1) % loadingTexts.length;
+            }, 200);
+        }, 2000);
+
+        // Hide loader after animation
+        setTimeout(() => {
+            const loader = document.getElementById('loader');
+            loader.style.opacity = '0';
+            loader.style.transition = 'opacity 0.8s ease-out';
+            setTimeout(() => {
+                loader.style.display = 'none';
+            }, 800);
+        }, 3000);
+    });
+    </script>
 </body>
 </html>
