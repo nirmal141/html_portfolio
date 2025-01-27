@@ -1245,6 +1245,97 @@
             0 0 10px rgba(100, 255, 218, 0.1),
             0 0 20px rgba(100, 255, 218, 0.05);
     }
+
+    .chat-toggle {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  padding: 10px 20px;
+  background: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.chat-container {
+  display: none;
+  position: fixed;
+  bottom: 80px;
+  right: 20px;
+  width: 300px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.chat-header {
+  padding: 15px;
+  background: #007bff;
+  color: white;
+  border-radius: 10px 10px 0 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.chat-messages {
+  height: 300px;
+  overflow-y: auto;
+  padding: 10px;
+  background-color: #0a192f;
+}
+
+.message {
+  margin: 5px 0;
+  padding: 8px;
+  border-radius: 5px;
+}
+
+.user-message {
+  background: black;
+  text-align: right;
+}
+
+.bot-message {
+  background: black;
+}
+
+.chat-input-container {
+  display: flex;
+  padding: 10px;
+  gap: 5px;
+}
+
+#user-input {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+#send-btn {
+  padding: 8px 15px;
+  background: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+/* Add these to your existing styles */
+.bot-message a {
+  color: #007bff;
+  text-decoration: underline;
+}
+
+.message strong {
+  color: #2c3e50;
+}
+
+.bot-message {
+  line-height: 1.6;
+  text-align: left;
+}
     </style>
 
     <!-- Add these libraries after your existing scripts in the head section -->
@@ -2284,6 +2375,39 @@
             </div>
         </section>
 
+        <button id="chat-toggle" class="fixed bottom-4 right-4 z-[9999] bg-highlight text-secondary-bg p-4 rounded-full shadow-lg hover:bg-highlight/90 transition-all duration-300"> Ask Nirmal </button>
+            <i class="fas fa-comment text-xl"></i>
+        </button>
+
+        <div id="chat-container" class="fixed bottom-20 right-4 w-80 md:w-96 bg-[#112240] rounded-xl shadow-2xl border border-highlight/20 z-[9999] hidden">
+            <div class="chat-header bg-[#0a192f] p-4 border-b border-highlight/20 flex justify-between items-center rounded-t-xl">
+                <h3 class="text-white font-semibold flex items-center gap-2">
+                    <i class="fas fa-robot text-highlight"></i>
+                    Nirmal's Assistant
+                </h3>
+                <button class="close-btn text-gray-400 hover:text-highlight transition-colors text-xl">&times;</button>
+            </div>
+            
+            <div id="chat-messages" class="h-96 overflow-y-auto p-4 space-y-4 bg-[#0a192f]/50"></div>
+            
+            <div class="chat-input-container bg-[#0a192f] p-4 border-t border-highlight/20 rounded-b-xl">
+                <div class="flex gap-2">
+                    <input 
+                        type="text" 
+                        id="user-input" 
+                        class="flex-1 bg-[#112240] border border-highlight/20 rounded-lg px-4 py-2 text-sm focus:outline-none focus:border-highlight text-gray-300 placeholder-gray-500"
+                        placeholder="Type your question..." 
+                    />
+                    <button 
+                        id="send-btn"
+                        class="bg-highlight text-[#112240] px-4 py-2 rounded-lg hover:bg-highlight/90 transition-colors"
+                    >
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
         
 
         <!-- Footer -->
@@ -3246,6 +3370,121 @@
             container.appendChild(image);
         });
     });
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+  const chatToggle = document.getElementById('chat-toggle');
+  const chatContainer = document.getElementById('chat-container');
+  const chatMessages = document.getElementById('chat-messages');
+  const userInput = document.getElementById('user-input');
+  const sendBtn = document.getElementById('send-btn');
+  const closeBtn = document.querySelector('.close-btn');
+
+  // Toggle chat visibility
+  chatToggle.addEventListener('click', () => {
+    chatContainer.style.display = chatContainer.style.display === 'block' ? 'none' : 'block';
+  });
+
+  closeBtn.addEventListener('click', () => {
+    chatContainer.style.display = 'none';
+  });
+
+  // Predefined Q&A
+  const responses = [
+    { 
+        pattern: /(who are you|about you|your bio|introduce yourself)/i, 
+      response: `I'm Nirmal Boghara, a Computer Science MS graduate from NYU with expertise in full-stack development and machine learning. I've built AI teaching assistants, optimized database systems, and developed enterprise-scale applications with measurable performance improvements.`
+    },
+    { 
+        pattern: /(skills|technical|technologies)/i, 
+      response: `Technical Expertise:<br>
+        <strong>Languages:</strong> Java, Python, JavaScript, SQL, C#<br>
+        <strong>Frameworks:</strong> React, Svelte, Spring Boot, TensorFlow<br>
+        <strong>Tools:</strong> AWS, Docker, Kubernetes, Git<br>
+        <strong>Data:</strong> PostgreSQL, MongoDB, Apache Kafka<br>
+        <strong>ML:</strong> PyTorch, Scikit-learn, ONNX Runtime`
+    },
+    { 
+      pattern: /(projects|portfolio)/i, 
+      response: `Key Projects:<br>
+        <strong>Tutorial:</strong> Local LLMs teaching assistant (92% accuracy)<br>
+        <strong>FitFarm:</strong> ML crop prediction system (93% accuracy)<br>
+        <strong>Zinzraa:</strong> MERN e-commerce platform (30% conversion boost)<br>
+        <strong>Fittify:</strong> Health platform with 95% user satisfaction`
+    },
+    { 
+        pattern: /(experience|work history|internship)/i, 
+      response: `Professional Experience:<br>
+        <strong>Bitnine (SWE Intern):</strong> Optimized PostgreSQL databases (23% performance gain), contributed to Apache AGE project<br>
+        <strong>Soulible Digital (AI Intern):</strong> Built YOLOv7 CV system (50% manual effort reduction)<br>
+        <strong>Feat Systems (SDE Intern):</strong> Improved Java/Spring Boot apps (15% fewer complaints)<br>
+        <strong>Goldenmace (Full-Stack):</strong> Created TypeScript/Svelte dashboards (30% performance boost)`
+    },
+    { 
+        pattern: /(education|degree|school)/i, 
+      response: `Education:<br>
+        - <strong> MS in Computer Science</strong> from NYU<br>
+        &nbsp;&nbsp;Coursework: Algorithms, Information Security, Machine Learning, Big Data<br>
+        - <strong>BE in Computer Engineering</strong> from University of Mumbai<br>
+        &nbsp;&nbsp;Coursework: Applied Cryptography, Computer Networks, Data Structures`
+    },
+    { 
+        pattern: /(contact|reach|connect)/i, 
+      response: `Let's connect!<br>
+        📧 nb3964@nyu.edu<br>
+        📱 +1 347-628-3769<br>
+        💼 <a href="#" target="_blank">Portfolio</a><br>
+        🔗 <a href="#" target="_blank">LinkedIn</a><br>
+        👨💻 <a href="#" target="_blank">GitHub</a>`
+    }
+  ];
+
+  // Handle user input
+  function handleUserInput() {
+    const question = userInput.value.trim();
+    if (!question) return;
+
+    // Display user message
+    appendMessage(question, 'user');
+    userInput.value = '';
+
+    // Simulate typing
+    setTimeout(() => {
+      const response = getBotResponse(question);
+      appendMessage(response, 'bot');
+    }, 1000);
+  }
+
+  // Generate bot response
+  function getBotResponse(input) {
+    input = input.toLowerCase();
+    for (const item of responses) {
+      if (item.pattern.test(input)) {
+        return item.response.replace(/\n/g, '<br>');
+      }
+    }
+    return "I'm here to talk about my professional background! Try asking about my skills, experience, or education.";
+  }
+
+  // Add messages to chat
+  function appendMessage(text, sender) {
+    const messageDiv = document.createElement('div');
+    messageDiv.className = `message ${sender}-message`;
+    messageDiv.innerHTML = text;
+    chatMessages.appendChild(messageDiv);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+  }
+
+  // Event listeners
+  sendBtn.addEventListener('click', handleUserInput);
+  userInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') handleUserInput();
+  });
+
+  // Initial greeting
+  appendMessage("Hi! I'm Nirmal's assistant. Ask about my education, 4 technical internships, ML projects, or technical skills!", 'bot');
+});
     </script>
 </body>
 </html>
