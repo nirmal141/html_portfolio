@@ -1336,14 +1336,194 @@
   line-height: 1.6;
   text-align: left;
 }
+
+    :root {
+        /* Light Modern Color Palette */
+        --bg-primary: #FAF9F6;     /* Off-white background */
+        --bg-secondary: #FFFFFF;    /* Pure white for cards */
+        --accent-primary: #B8926A;  /* Warm beige */
+        --accent-secondary: #8B7355;/* Darker beige */
+        --text-primary: #2C2C2C;   /* Dark gray for text */
+        --text-secondary: #666666; /* Medium gray for secondary text */
+        --gradient-1: #D4C4B0;     /* Light beige gradient */
+        --gradient-2: #B8926A;     /* Darker beige gradient */
+        --shadow: rgba(184, 146, 106, 0.1); /* Beige shadow */
+    }
+
+    body {
+        background-color: var(--bg-primary);
+        color: var(--text-primary);
+        position: relative;
+        overflow-x: hidden;
+    }
+
+    /* Subtle pattern background */
+    body::before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: 
+            radial-gradient(circle at 0% 0%, 
+                rgba(184, 146, 106, 0.05), 
+                transparent 40%),
+            radial-gradient(circle at 100% 100%, 
+                rgba(212, 196, 176, 0.05), 
+                transparent 40%);
+        z-index: -1;
+    }
+
+    /* Refined grid overlay */
+    .grid-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: 
+            linear-gradient(rgba(184, 146, 106, 0.05) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(184, 146, 106, 0.05) 1px, transparent 1px);
+        background-size: 50px 50px;
+        z-index: -1;
+    }
+
+    /* Enhanced card styling */
+    .project-card, .education-card, .internship-card {
+        background: var(--bg-secondary);
+        border: 1px solid rgba(184, 146, 106, 0.1);
+        border-radius: 12px;
+        box-shadow: 0 4px 20px var(--shadow);
+        transition: all 0.3s ease;
+    }
+
+    .project-card:hover, .education-card:hover, .internship-card:hover {
+        transform: translateY(-5px);
+        border-color: var(--accent-primary);
+        box-shadow: 0 10px 30px var(--shadow);
+    }
+
+    /* Warm button effect */
+    .button-primary {
+        background: var(--accent-primary);
+        color: var(--bg-secondary);
+        border: none;
+        padding: 12px 24px;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+    }
+
+    .button-primary:hover {
+        background: var(--accent-secondary);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 15px var(--shadow);
+    }
+
+    /* Section headings with warm gradient */
+    .section-heading {
+        background: linear-gradient(135deg, var(--gradient-1), var(--gradient-2));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-weight: bold;
+    }
+
+    /* Enhanced scrollbar */
+    ::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: var(--bg-primary);
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: var(--accent-primary);
+        border-radius: 4px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: var(--accent-secondary);
+    }
+
+    /* Gradient text effect */
+    .gradient-text {
+        background: linear-gradient(135deg, var(--gradient-1), var(--gradient-2));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    /* Glass effect for modals and dropdowns */
+    .glass-effect {
+        background: rgba(255, 255, 255, 0.8);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(184, 146, 106, 0.1);
+        border-radius: 12px;
+        box-shadow: 0 4px 20px var(--shadow);
+    }
+
+    /* Navigation link hover effect */
+    .nav-link {
+        color: var(--text-primary);
+        position: relative;
+        transition: color 0.3s ease;
+    }
+
+    .nav-link::after {
+        content: '';
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: linear-gradient(135deg, var(--gradient-1), var(--gradient-2));
+        transition: width 0.3s ease;
+    }
+
+    .nav-link:hover {
+        color: var(--accent-primary);
+    }
+
+    .nav-link:hover::after {
+        width: 100%;
+    }
+
+    /* Input fields styling */
+    input, textarea {
+        background: var(--bg-secondary);
+        border: 1px solid rgba(184, 146, 106, 0.2);
+        border-radius: 8px;
+        padding: 12px;
+        color: var(--text-primary);
+        transition: all 0.3s ease;
+    }
+
+    input:focus, textarea:focus {
+        outline: none;
+        border-color: var(--accent-primary);
+        box-shadow: 0 0 0 3px rgba(184, 146, 106, 0.1);
+    }
+
+    /* Tag/skill pill styling */
+    .skill-tag {
+        background: rgba(184, 146, 106, 0.1);
+        color: var(--accent-secondary);
+        padding: 4px 12px;
+        border-radius: 20px;
+        font-size: 0.875rem;
+        transition: all 0.3s ease;
+    }
+
+    .skill-tag:hover {
+        background: rgba(184, 146, 106, 0.2);
+        transform: translateY(-1px);
+    }
     </style>
 
-    <!-- Add these libraries after your existing scripts in the head section -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Blotter/0.1.0/blotter.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/kute.js/2.2.4/kute.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.12.0/tsparticles.bundle.min.js"></script>
-    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+    <!-- Add these div elements right after your <body> tag -->
+    <div class="bg-grid"></div>
+    <div class="bg-gradient"></div>
+    <div class="grid-overlay"></div>
 </head>
 
 <body class="bg-bg-primary font-poppins text-white">
@@ -2153,7 +2333,7 @@
                     <!-- Project Card -->
                     <div class="w-full lg:w-2/3 group bg-secondary-bg rounded-xl overflow-hidden border border-highlight/10 hover:border-highlight/30 transition-all duration-500">
                         <div class="relative overflow-hidden">
-                            <img src="./TUTOR-AI.png" alt="Tutor.AI Project" class="w-full h-64 object-contain transform group-hover:scale-105 transition-transform duration-500">
+                            <img src="./TUTOR-AI.png" alt="Tutor.AI Project" class="w-96 h-64 object-contain transform group-hover:scale-105 transition-transform duration-500">
                             <div class="absolute inset-0 bg-bg-primary/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                                 <div class="space-x-4">
                                     <a href="https://tutorllm.streamlit.app/" class="px-4 py-2 bg-highlight text-secondary-bg rounded-md hover:bg-highlight/90">View Demo</a>
@@ -2198,7 +2378,7 @@
                     <!-- Project Card -->
                     <div class="w-full lg:w-2/3 group bg-secondary-bg rounded-xl overflow-hidden border border-highlight/10 hover:border-highlight/30 transition-all duration-500">
                         <div class="relative overflow-hidden">
-                            <img src="./FITFARM.png" alt="Tutor.AI Project" class="w-full h-64 object-contain transform group-hover:scale-105 transition-transform duration-500">
+                            <img src="./FITFARM.png" alt="Tutor.AI Project" class="w-96 h-64 object-contain transform group-hover:scale-105 transition-transform duration-500">
                             <div class="absolute inset-0 bg-bg-primary/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                                 <div class="space-x-4">
                                     
@@ -2243,7 +2423,7 @@
                     <!-- Project Card -->
                     <div class="w-full lg:w-2/3 group bg-secondary-bg rounded-xl overflow-hidden border border-highlight/10 hover:border-highlight/30 transition-all duration-500">
                         <div class="relative overflow-hidden">
-                            <img src="./ZINZRAA.png" alt="Tutor.AI Project" class="w-full h-64 object-contain transform group-hover:scale-105 transition-transform duration-500">
+                            <img src="./ZINZRAA.png" alt="Tutor.AI Project" class="w-96 h-64 object-contain transform group-hover:scale-105 transition-transform duration-500">
                             <div class="absolute inset-0 bg-bg-primary/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                                 <div class="space-x-4">
                                     <a href="https://asynk-zinzraa-2023828.netlify.app/#/" class="px-4 py-2 bg-highlight text-secondary-bg rounded-md hover:bg-highlight/90">View Demo</a>
@@ -2287,7 +2467,7 @@
                     <!-- Project Card -->
                     <div class="w-full lg:w-2/3 group bg-secondary-bg rounded-xl overflow-hidden border border-highlight/10 hover:border-highlight/30 transition-all duration-500">
                         <div class="relative overflow-hidden">
-                            <img src="./FITTIFY.png" alt="Tutor.AI Project" class="w-full h-64 object-contain transform group-hover:scale-105 transition-transform duration-500">
+                            <img src="./FITTIFY.png" alt="Tutor.AI Project" class="w-96 h-64 object-contain transform group-hover:scale-105 transition-transform duration-500">
                             <div class="absolute inset-0 bg-bg-primary/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                                 <div class="space-x-4">
                                     <a href="https://github.com/nirmal141/Fittify---The-Health-Portfolio" class="px-4 py-2 border border-highlight text-highlight rounded-md hover:bg-highlight/10">Source Code</a>
@@ -3372,119 +3552,100 @@
     });
     </script>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-  const chatToggle = document.getElementById('chat-toggle');
-  const chatContainer = document.getElementById('chat-container');
-  const chatMessages = document.getElementById('chat-messages');
-  const userInput = document.getElementById('user-input');
-  const sendBtn = document.getElementById('send-btn');
-  const closeBtn = document.querySelector('.close-btn');
-
-  // Toggle chat visibility
-  chatToggle.addEventListener('click', () => {
-    chatContainer.style.display = chatContainer.style.display === 'block' ? 'none' : 'block';
-  });
-
-  closeBtn.addEventListener('click', () => {
-    chatContainer.style.display = 'none';
-  });
-
-  // Predefined Q&A
-  const responses = [
-    { 
-        pattern: /(who are you|about you|your bio|introduce yourself)/i, 
-      response: `I'm Nirmal Boghara, a Computer Science MS graduate from NYU with expertise in full-stack development and machine learning. I've built AI teaching assistants, optimized database systems, and developed enterprise-scale applications with measurable performance improvements.`
-    },
-    { 
-        pattern: /(skills|technical|technologies)/i, 
-      response: `Technical Expertise:<br>
-        <strong>Languages:</strong> Java, Python, JavaScript, SQL, C#<br>
-        <strong>Frameworks:</strong> React, Svelte, Spring Boot, TensorFlow<br>
-        <strong>Tools:</strong> AWS, Docker, Kubernetes, Git<br>
-        <strong>Data:</strong> PostgreSQL, MongoDB, Apache Kafka<br>
-        <strong>ML:</strong> PyTorch, Scikit-learn, ONNX Runtime`
-    },
-    { 
-      pattern: /(projects|portfolio)/i, 
-      response: `Key Projects:<br>
-        <strong>Tutorial:</strong> Local LLMs teaching assistant (92% accuracy)<br>
-        <strong>FitFarm:</strong> ML crop prediction system (93% accuracy)<br>
-        <strong>Zinzraa:</strong> MERN e-commerce platform (30% conversion boost)<br>
-        <strong>Fittify:</strong> Health platform with 95% user satisfaction`
-    },
-    { 
-        pattern: /(experience|work history|internship)/i, 
-      response: `Professional Experience:<br>
-        <strong>Bitnine (SWE Intern):</strong> Optimized PostgreSQL databases (23% performance gain), contributed to Apache AGE project<br>
-        <strong>Soulible Digital (AI Intern):</strong> Built YOLOv7 CV system (50% manual effort reduction)<br>
-        <strong>Feat Systems (SDE Intern):</strong> Improved Java/Spring Boot apps (15% fewer complaints)<br>
-        <strong>Goldenmace (Full-Stack):</strong> Created TypeScript/Svelte dashboards (30% performance boost)`
-    },
-    { 
-        pattern: /(education|degree|school)/i, 
-      response: `Education:<br>
-        - <strong> MS in Computer Science</strong> from NYU<br>
-        &nbsp;&nbsp;Coursework: Algorithms, Information Security, Machine Learning, Big Data<br>
-        - <strong>BE in Computer Engineering</strong> from University of Mumbai<br>
-        &nbsp;&nbsp;Coursework: Applied Cryptography, Computer Networks, Data Structures`
-    },
-    { 
-        pattern: /(contact|reach|connect)/i, 
-      response: `Let's connect!<br>
-        📧 nb3964@nyu.edu<br>
-        📱 +1 347-628-3769<br>
-        💼 <a href="#" target="_blank">Portfolio</a><br>
-        🔗 <a href="#" target="_blank">LinkedIn</a><br>
-        👨💻 <a href="#" target="_blank">GitHub</a>`
-    }
-  ];
-
-  // Handle user input
-  function handleUserInput() {
-    const question = userInput.value.trim();
-    if (!question) return;
-
-    // Display user message
-    appendMessage(question, 'user');
-    userInput.value = '';
-
-    // Simulate typing
-    setTimeout(() => {
-      const response = getBotResponse(question);
-      appendMessage(response, 'bot');
-    }, 1000);
-  }
-
-  // Generate bot response
-  function getBotResponse(input) {
-    input = input.toLowerCase();
-    for (const item of responses) {
-      if (item.pattern.test(input)) {
-        return item.response.replace(/\n/g, '<br>');
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const chatToggle = document.getElementById('chat-toggle');
+      const chatContainer = document.getElementById('chat-container');
+      const chatMessages = document.getElementById('chat-messages');
+      const userInput = document.getElementById('user-input');
+      const sendBtn = document.getElementById('send-btn');
+      const closeBtn = document.querySelector('.close-btn');
+    
+      // Toggle chat visibility
+      chatToggle.addEventListener('click', () => {
+        chatContainer.style.display = chatContainer.style.display === 'block' ? 'none' : 'block';
+      });
+    
+      closeBtn.addEventListener('click', () => {
+        chatContainer.style.display = 'none';
+      });
+    
+      // Handle user input
+      async function handleUserInput() {
+        const question = userInput.value.trim();
+        if (!question) return;
+    
+        // Display user message
+        appendMessage(question, 'user');
+        userInput.value = '';
+    
+        // Add typing indicator
+        const typingIndicator = appendMessage('<div class="typing-indicator">...</div>', 'bot');
+    
+        try {
+          const response = await getBotResponse(question);
+          // Remove typing indicator and show actual response
+          chatMessages.removeChild(typingIndicator);
+          appendMessage(response, 'bot');
+        } catch (error) {
+          chatMessages.removeChild(typingIndicator);
+          appendMessage("Sorry, I'm having trouble connecting right now. Please try again later!", 'bot');
+        }
       }
+    
+      // API response handler
+      async function getBotResponse(input) {
+        try {
+          const response = await fetch('http://localhost:5000/ask', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({question: input})
+          });
+          
+          if (!response.ok) throw new Error('API error');
+          const data = await response.json();
+          return data.answer.replace(/\n/g, '<br>');
+        } catch (error) {
+          throw new Error('API connection failed');
+        }
+      }
+    
+      // Add messages to chat
+      function appendMessage(text, sender) {
+        const messageDiv = document.createElement('div');
+        messageDiv.className = `message ${sender}-message`;
+        messageDiv.innerHTML = text;
+        chatMessages.appendChild(messageDiv);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+        return messageDiv;
+      }
+    
+      // Event listeners
+      sendBtn.addEventListener('click', handleUserInput);
+      userInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') handleUserInput();
+      });
+    
+      // Initial greeting
+      appendMessage("Hi! I'm Nirmal's AI assistant. Ask me anything about my professional background!", 'bot');
+    });
+    </script>
+
+    <script>
+    function addMessage(message, isUser = false) {
+        const messageDiv = document.createElement('div');
+        messageDiv.className = `mb-4 ${isUser ? 'text-right' : 'text-left'}`;
+        
+        messageDiv.innerHTML = `
+            <div class="inline-block ${isUser ? 'bg-accent-primary' : 'bg-bg-secondary'} 
+                        rounded-lg px-4 py-2 max-w-[80%]">
+                ${message}
+            </div>
+        `;
+        
+        document.getElementById('chat-messages').appendChild(messageDiv);
+        messageDiv.scrollIntoView({ behavior: 'smooth' });
     }
-    return "I'm here to talk about my professional background! Try asking about my skills, experience, or education.";
-  }
-
-  // Add messages to chat
-  function appendMessage(text, sender) {
-    const messageDiv = document.createElement('div');
-    messageDiv.className = `message ${sender}-message`;
-    messageDiv.innerHTML = text;
-    chatMessages.appendChild(messageDiv);
-    chatMessages.scrollTop = chatMessages.scrollHeight;
-  }
-
-  // Event listeners
-  sendBtn.addEventListener('click', handleUserInput);
-  userInput.addEventListener('keypress', (e) => {
-    if (e.key === 'Enter') handleUserInput();
-  });
-
-  // Initial greeting
-  appendMessage("Hi! I'm Nirmal's assistant. Ask about my education, 4 technical internships, ML projects, or technical skills!", 'bot');
-});
     </script>
 </body>
 </html>
